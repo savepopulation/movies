@@ -8,16 +8,16 @@ import androidx.annotation.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.raqun.movies.core.presentation.Constants
-import com.raqun.movies.core.presentation.R
 import com.raqun.movies.core.presentation.navigation.UiNavigation
+import dagger.android.support.HasSupportFragmentInjector
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
     @LayoutRes
     abstract fun getLayoutRes(): Int
 
     @StringRes
-    open val titleRes = R.string.app_name
+    open val titleRes = Constants.NO_RES
 
     @MenuRes
     open val menuRes = Constants.NO_RES
@@ -66,7 +66,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     fun setScreenTitle(title: String?) {
-        supportActionBar?.title = title ?: getString(R.string.app_name)
+        supportActionBar?.title = title
     }
 
     fun setToolbar(toolbar: Toolbar) {

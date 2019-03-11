@@ -13,7 +13,7 @@ object Versions {
      * Dependency Versions
      */
     const val xVersion = "1.0.0"
-    const val gradleVersion = "3.3.0"
+    const val gradleVersion = "3.3.1"
     const val kotlinVersion = "1.3.20"
     const val jUnitVersion = "4.12"
     const val testRunnerVersion = "1.1.0"

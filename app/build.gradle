@@ -17,6 +17,12 @@ android {
 
 dependencies {
 
+    // Core
+    implementation project(Modules.core)
+    implementation project(Modules.coreData)
+    implementation project(Modules.coreDomain)
+    implementation project(Modules.corePresentation)
+
     // Tv Shows
     implementation project(Modules.showsPresentation)
     implementation project(Modules.showsDomain)
