@@ -6,4 +6,7 @@ dependencies {
     //Rx
     api Libraries.rxKotlin
     api Libraries.rxAndroid
+
+    // Gson
+    api Libraries.gson
 }

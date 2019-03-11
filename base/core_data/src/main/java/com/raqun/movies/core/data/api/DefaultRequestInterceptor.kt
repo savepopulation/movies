@@ -1,18 +1,17 @@
 package com.raqun.movies.core.data.api
 
-import com.raqun.movies.core.data.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
+
+private const val CONTENT_TYPE = "Content-Type"
+private const val JSON = "application/json"
 
 class DefaultRequestInterceptor @Inject constructor() : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         return chain.proceed(with(chain.request().newBuilder()) {
-            addHeader("Content-Type", "application/json")
-            addHeader("VersionCode", BuildConfig.VERSION_CODE.toString())
-            addHeader("VersionName", BuildConfig.VERSION_NAME)
-            addHeader("ApplicationId", BuildConfig.APPLICATION_ID)
+            addHeader(CONTENT_TYPE, JSON)
             build()
         })
     }
