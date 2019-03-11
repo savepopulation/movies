@@ -1,5 +1,6 @@
 package com.raqun.movies.core.presentation.base
 
+import android.content.Context
 import android.os.Bundle
 import android.provider.Settings.Global.getString
 import android.view.*
@@ -8,6 +9,9 @@ import androidx.annotation.MenuRes
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import com.raqun.movies.core.presentation.Constants
+import dagger.android.AndroidInjection
+import dagger.android.support.AndroidSupportInjection
+import dagger.android.support.HasSupportFragmentInjector
 
 abstract class BaseFragment : Fragment(), BaseView {
 
@@ -19,6 +23,14 @@ abstract class BaseFragment : Fragment(), BaseView {
 
     @StringRes
     open val titleRes = Constants.NO_RES
+
+    override fun onAttach(context: Context?) {
+        if (activity is HasSupportFragmentInjector) {
+            AndroidSupportInjection.inject(this)
+            onInjected()
+        }
+        super.onAttach(context)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +76,10 @@ abstract class BaseFragment : Fragment(), BaseView {
     fun getApplicationContext() = getApplication()?.applicationContext
 
     open fun initView() {
+        // can be overridden
+    }
+
+    open fun onInjected() {
         // can be overridden
     }
 }

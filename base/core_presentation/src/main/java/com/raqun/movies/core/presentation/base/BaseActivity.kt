@@ -7,9 +7,14 @@ import android.view.MenuItem
 import androidx.annotation.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import com.raqun.movies.core.presentation.Constants
 import com.raqun.movies.core.presentation.navigation.UiNavigation
+import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
+import javax.inject.Inject
 
 abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
@@ -27,8 +32,15 @@ abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
     @IdRes
     open val toolbarRes = Constants.NO_RES
 
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> = dispatchingAndroidInjector
+
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
+        onInject()
         super.onCreate(savedInstanceState)
         setContentView(getLayoutRes())
         if (toolbarRes != Constants.NO_RES) {
@@ -78,6 +90,10 @@ abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
             UiNavigation.BACK -> supportActionBar?.setDisplayHomeAsUpEnabled(true)
             UiNavigation.ROOT -> supportActionBar?.setDisplayHomeAsUpEnabled(false)
         }
+    }
+
+    open fun onInject() {
+        // can be overridden
     }
 
 }
