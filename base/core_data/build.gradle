@@ -1,0 +1,12 @@
+apply from: "$rootDir/common-android-library.gradle"
+dependencies {
+
+    implementation project(Modules.core)
+
+    // RETROFIT
+    api Libraries.retrofit
+    api Libraries.logInterceptor
+    api Libraries.gson
+    api Libraries.okHttp
+    api Libraries.retrofitRxAdapter
+}

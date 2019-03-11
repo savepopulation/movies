@@ -1,0 +1,9 @@
+apply from: "$rootDir/common-android-library.gradle"
+dependencies {
+    // Dagger2
+    api Libraries.dagger2AndroidSupport
+
+    //Rx
+    api Libraries.rxKotlin
+    api Libraries.rxAndroid
+}
