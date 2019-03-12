@@ -14,7 +14,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class ShowsViewModel @Inject constructor(
+class PopularTvShowsViewModel @Inject constructor(
     private val popularTvShowsInteractor: Interactor.ReactiveRetrieveInteractor<PopularTvShowsInteractor.PopularTvShowsParams, PagedTvShows>,
     private val errorFactory: ErrorFactory
 ) : ViewModel() {
@@ -48,12 +48,11 @@ class ShowsViewModel @Inject constructor(
         _tvShows.value = DataHolder.Loading()
         val pagedParams = PopularTvShowsInteractor.PopularTvShowsParams(page)
         val popularTvShowsFetchDisposible = popularTvShowsInteractor.execute(pagedParams)
-            ?.observeOn(AndroidSchedulers.mainThread())
-            ?.subscribeOn(Schedulers.io())
-            ?.subscribe({
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe({
                 _tvShows.value = DataHolder.Success(it)
             }, {
-                it.printStackTrace()
                 _tvShows.value = DataHolder.Fail(errorFactory.createErrorFromThrowable(it))
             })
         compositeDisposable.add(popularTvShowsFetchDisposible!!)

@@ -6,12 +6,12 @@ import com.raqun.movies.shows.domain.PagedTvShows
 import io.reactivex.Single
 import javax.inject.Inject
 
-class ShowsRemoteDataSource @Inject constructor(private val showsServices: ShowsServices) :
+class PopularTvShowsRemoteDataSource @Inject constructor(private val tvShowsServices: TvShowsServices) :
     DataSource.RetrieveRemoteDataSource<Int, PagedTvShows> {
 
     @SuppressLint("CheckResult")
     override fun getResult(request: Int): Single<PagedTvShows> =
-        showsServices.getPopularTvShows(request)
+        tvShowsServices.getPopularTvShows(request)
             .map {
                 return@map PagedTvShows(it.page, it.totalResults, it.totalPages, it.results)
             }

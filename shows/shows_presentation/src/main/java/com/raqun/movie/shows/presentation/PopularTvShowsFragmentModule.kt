@@ -5,8 +5,8 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-abstract class ShowsFragmentModule {
+abstract class PopularTvShowsFragmentModule {
     @FragmentScope
     @ContributesAndroidInjector
-    abstract fun contributeShowsFragmentInjector(): ShowsFragment
+    abstract fun contributeShowsFragmentInjector(): PopularTvShowsFragment
 }

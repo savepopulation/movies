@@ -7,9 +7,9 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 
 @Module
-abstract class ShowsViewModelModule {
+abstract class PopularTvShowsViewModelModule {
     @Binds
     @IntoMap
-    @ViewModelKey(ShowsViewModel::class)
-    abstract fun bindShowsViewModel(showsViewModel: ShowsViewModel) : ViewModel
+    @ViewModelKey(PopularTvShowsViewModel::class)
+    abstract fun bindShowsViewModel(popularTvShowsViewModel: PopularTvShowsViewModel) : ViewModel
 }

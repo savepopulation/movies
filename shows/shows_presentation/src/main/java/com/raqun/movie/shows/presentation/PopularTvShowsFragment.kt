@@ -9,23 +9,23 @@ import com.raqun.movies.core.model.DataHolder
 import com.raqun.movies.core.presentation.base.BaseFragment
 import javax.inject.Inject
 
-class ShowsFragment : BaseFragment() {
+class PopularTvShowsFragment : BaseFragment() {
 
     @Inject
     protected lateinit var vmFactory: ViewModelProvider.Factory
 
-    protected lateinit var viewModel: ShowsViewModel
+    protected lateinit var viewModelPopularTv: PopularTvShowsViewModel
 
     override fun getLayoutRes() = R.layout.fragment_shows
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, vmFactory).get(ShowsViewModel::class.java)
+        viewModelPopularTv = ViewModelProviders.of(this, vmFactory).get(PopularTvShowsViewModel::class.java)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.tvShows.observe(this, Observer {
+        viewModelPopularTv.tvShows.observe(this, Observer {
             when (it) {
                 is DataHolder.Success -> Log.e("result", "success")
                 is DataHolder.Fail -> Log.e("result", "fail")
@@ -33,10 +33,10 @@ class ShowsFragment : BaseFragment() {
             }
         })
 
-        viewModel.getPopularTvShows()
+        viewModelPopularTv.getPopularTvShows()
     }
 
     companion object {
-        fun newInstance() = ShowsFragment()
+        fun newInstance() = PopularTvShowsFragment()
     }
 }

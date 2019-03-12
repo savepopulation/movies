@@ -13,16 +13,16 @@ class ShowsDataModule {
 
     @Provides
     @Singleton
-    fun provideShowsServices(retrofit: Retrofit): ShowsServices = retrofit.create(ShowsServices::class.java)
+    fun provideShowsServices(retrofit: Retrofit): TvShowsServices = retrofit.create(TvShowsServices::class.java)
 
     @Provides
     @Singleton
-    fun provideShowsRemoteDataSource(showsServices: ShowsServices): DataSource.RetrieveRemoteDataSource<Int, PagedTvShows> =
-        ShowsRemoteDataSource(showsServices)
+    fun provideShowsRemoteDataSource(tvShowsServices: TvShowsServices): DataSource.RetrieveRemoteDataSource<Int, PagedTvShows> =
+        PopularTvShowsRemoteDataSource(tvShowsServices)
 
     @Provides
     @Singleton
-    fun provideShowsRepository(showsRemoteDataSource: ShowsRemoteDataSource): TvShowsRepository =
-        TvShowsRepositoryImpl(showsRemoteDataSource)
+    fun provideShowsRepository(popularTvShowsRemoteDataSource: PopularTvShowsRemoteDataSource): TvShowsRepository =
+        TvShowsRepositoryImpl(popularTvShowsRemoteDataSource)
 
 }
