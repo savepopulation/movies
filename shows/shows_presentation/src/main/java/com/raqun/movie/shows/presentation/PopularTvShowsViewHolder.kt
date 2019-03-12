@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.raqun.movies.core.presentation.extensions.loadImage
 import com.raqun.movies.core.presentation.recyclerview.DisplayItem
 import com.raqun.movies.core.presentation.recyclerview.ViewHolder
 import com.raqun.movies.core.presentation.recyclerview.ViewHolderBinder
 import com.raqun.movies.core.presentation.recyclerview.ViewHolderFactory
-import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
 class PopularTvShowsViewHolder private constructor(itemView: View) : ViewHolder<PopularTvShowViewEntity>(itemView) {
@@ -24,7 +24,9 @@ class PopularTvShowsViewHolder private constructor(itemView: View) : ViewHolder<
         textViewRating.text = itemView.context.getString(
             R.string.avarage_rating, item.rating.toString()
         )
-        Picasso.get().load(item.picture).into(imageviewPoster)
+        item.picture?.let {
+            imageviewPoster.loadImage(it)
+        }
     }
 
     internal class PopularTvShowsViewHolderFactory @Inject constructor() : ViewHolderFactory {
