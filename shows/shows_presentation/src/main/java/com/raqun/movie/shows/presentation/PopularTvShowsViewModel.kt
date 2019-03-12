@@ -7,53 +7,69 @@ import androidx.lifecycle.ViewModel
 import com.raqun.movies.core.domain.Interactor
 import com.raqun.movies.core.error.ErrorFactory
 import com.raqun.movies.core.model.DataHolder
+import com.raqun.movies.core.presentation.recyclerview.DisplayItem
 import com.raqun.movies.shows.domain.PagedTvShows
 import com.raqun.movies.shows.domain.PopularTvShowsInteractor
-import io.reactivex.android.schedulers.AndroidSchedulers
+import com.raqun.movies.shows.domain.TvShow
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.Function
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class PopularTvShowsViewModel @Inject constructor(
     private val popularTvShowsInteractor: Interactor.ReactiveRetrieveInteractor<PopularTvShowsInteractor.PopularTvShowsParams, PagedTvShows>,
+    private val itemMapper: Function<TvShow, DisplayItem>,
     private val errorFactory: ErrorFactory
 ) : ViewModel() {
 
-    private val _tvShows = MediatorLiveData<DataHolder<PagedTvShows>>()
-    private val _page = MutableLiveData<Int>()
+    private val _popularTvShowsLiveData = MediatorLiveData<DataHolder<List<DisplayItem>>>()
+    private val _pageLiveData = MutableLiveData<Int>()
     private val compositeDisposable = CompositeDisposable()
+    private val popularTvShows = ArrayList<DisplayItem>()
+    private val page = Page()
 
-    val tvShows: MediatorLiveData<DataHolder<PagedTvShows>>
-        get() = _tvShows
+    val popularTvShowsLiveData: MediatorLiveData<DataHolder<List<DisplayItem>>>
+        get() = _popularTvShowsLiveData
 
-    val page: MutableLiveData<Int>
-        get() = _page
+    val pageLiveData: MutableLiveData<Int>
+        get() = _pageLiveData
 
     init {
-        tvShows.addSource(_page) {
+        _popularTvShowsLiveData.addSource(_pageLiveData) {
             fetchPopularTvShows(it)
         }
     }
 
-    fun getPopularTvShows() {
-        if (_page.value == null) {
-            _page.value = 1
+    fun getPopularTvShowsByPagination() {
+        if (_pageLiveData.value == null) {
+            _pageLiveData.value = page.currentPage
         } else {
-            _page.value = _page.value as Int + 1
+            val nextPage = page.currentPage + 1
+            if (nextPage > page.totalPages) {
+                return
+            }
+            _pageLiveData.value = nextPage
         }
     }
 
     @SuppressLint("CheckResult")
     private fun fetchPopularTvShows(page: Int) {
-        _tvShows.value = DataHolder.Loading()
+        _popularTvShowsLiveData.value = DataHolder.Loading()
         val pagedParams = PopularTvShowsInteractor.PopularTvShowsParams(page)
         val popularTvShowsFetchDisposible = popularTvShowsInteractor.execute(pagedParams)
-            .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(Schedulers.computation())
             .subscribeOn(Schedulers.io())
             .subscribe({
-                _tvShows.value = DataHolder.Success(it)
+                this.page.currentPage = it.page
+                this.page.totalPages = it.totalPages
+                // TODO convert to reactive stream
+                for (tvShow in it.results) {
+                    popularTvShows.add(itemMapper.apply(tvShow))
+                }
+                _popularTvShowsLiveData.postValue(DataHolder.Success(popularTvShows))
             }, {
-                _tvShows.value = DataHolder.Fail(errorFactory.createErrorFromThrowable(it))
+                it.printStackTrace()
+                _popularTvShowsLiveData.postValue(DataHolder.Fail(errorFactory.createErrorFromThrowable(it)))
             })
         compositeDisposable.add(popularTvShowsFetchDisposible!!)
     }
@@ -62,4 +78,6 @@ class PopularTvShowsViewModel @Inject constructor(
         compositeDisposable.clear()
         super.onCleared()
     }
+
+    data class Page(var currentPage: Int = 1, var totalPages: Int = 1)
 }

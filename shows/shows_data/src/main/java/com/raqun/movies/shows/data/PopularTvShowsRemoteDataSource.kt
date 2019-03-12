@@ -13,6 +13,13 @@ class PopularTvShowsRemoteDataSource @Inject constructor(private val tvShowsServ
     override fun getResult(request: Int): Single<PagedTvShows> =
         tvShowsServices.getPopularTvShows(request)
             .map {
-                return@map PagedTvShows(it.page, it.totalResults, it.totalPages, it.results)
+                if (it.page == null
+                    || it.totalResults == null
+                    || it.totalPages == null
+                    || it.results == null
+                ) {
+                    throw Exception("Unexpected response!")
+                }
+                return@map PagedTvShows(it.page!!, it.totalResults!!, it.totalPages!!, it.results!!)
             }
 }

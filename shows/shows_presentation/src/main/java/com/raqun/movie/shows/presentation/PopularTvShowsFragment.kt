@@ -37,15 +37,15 @@ class PopularTvShowsFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModelPopularTv.tvShows.observe(this, Observer {
+        viewModelPopularTv.popularTvShowsLiveData.observe(this, Observer {
             when (it) {
-                is DataHolder.Success -> Log.e("result", "success")
+                is DataHolder.Success -> popularTvShowsAdapter.update(it.data)
                 is DataHolder.Fail -> Log.e("result", "fail")
                 is DataHolder.Loading -> Log.e("result", "loading")
             }
         })
 
-        viewModelPopularTv.getPopularTvShows()
+        viewModelPopularTv.getPopularTvShowsByPagination()
     }
 
     companion object {

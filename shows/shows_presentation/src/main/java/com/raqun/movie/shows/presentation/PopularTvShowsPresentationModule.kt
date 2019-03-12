@@ -2,11 +2,13 @@ package com.raqun.movie.shows.presentation
 
 import com.raqun.movie.shows.presentation.PopularTvShowsPresentationConstants.TYPES.SHOW
 import com.raqun.movies.core.presentation.recyclerview.*
+import com.raqun.movies.shows.domain.TvShow
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntKey
 import dagger.multibindings.IntoMap
+import io.reactivex.functions.Function
 
 @Module
 abstract class PopularTvShowsPresentationModule {

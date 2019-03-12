@@ -11,6 +11,5 @@ class PopularTvShowsInteractor @Inject constructor(private val tvShowsRepository
         return tvShowsRepository.getPopularTShows(params.page).toObservable()
     }
 
-
     class PopularTvShowsParams(val page: Int) : Interactor.Params()
 }
