@@ -1,7 +1,10 @@
 package com.raqun.movies.ui
 
 import android.os.Bundle
+import com.raqun.movie.shows.presentation.ShowsFragment
+import com.raqun.movies.R
 import com.raqun.movies.core.presentation.base.BaseActivity
+import com.raqun.movies.core.presentation.extensions.transact
 
 class MainActivity : BaseActivity() {
 
@@ -9,5 +12,10 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            supportFragmentManager.transact {
+                replace(R.id.framelayout_main, ShowsFragment.newInstance())
+            }
+        }
     }
 }

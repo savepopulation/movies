@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.raqun.movies.core.presentation.Constants
+import com.raqun.movies.core.presentation.R
 import com.raqun.movies.core.presentation.navigation.UiNavigation
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
@@ -22,7 +23,7 @@ abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
     abstract fun getLayoutRes(): Int
 
     @StringRes
-    open val titleRes = Constants.NO_RES
+    open val titleRes = R.string.app_name
 
     @MenuRes
     open val menuRes = Constants.NO_RES

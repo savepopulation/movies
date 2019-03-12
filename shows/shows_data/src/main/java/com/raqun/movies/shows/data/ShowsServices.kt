@@ -9,6 +9,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ShowsServices {
-    @GET("/tv/popular?api_key=${ApiConstants.API_KEY}")
-    fun getPopularTvShows(page: Int = 1): Single<PagedApiResponse<List<Show>>>?
+    @GET("/3/tv/popular?api_key=${ApiConstants.API_KEY}")
+    fun getPopularTvShows(@Query("page") page: Int = 1): Single<PagedApiResponse<List<Show>>>?
 }

@@ -14,9 +14,6 @@ class ShowsRemoteDataSource @Inject constructor(private val showsServices: Shows
     override fun getResult(request: Int): Single<PagedTvShow?>? =
         showsServices.getPopularTvShows(request)
             ?.map {
-                if (it.code != ApiConstants.SUCCESS_CODE) {
-                    throw ApiException(it.code, it.message)
-                }
                 return@map PagedTvShow(it.page, it.totalResults, it.totalPages, it.results)
             }
 }
