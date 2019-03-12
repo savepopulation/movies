@@ -35,6 +35,7 @@ class PopularTvShowsViewModel @Inject constructor(
         get() = _pageLiveData
 
     init {
+        _popularTvShowsLiveData.value = DataHolder.Success(popularTvShows)
         _popularTvShowsLiveData.addSource(_pageLiveData) {
             fetchPopularTvShows(it)
         }
@@ -62,11 +63,12 @@ class PopularTvShowsViewModel @Inject constructor(
             .subscribe({
                 this.page.currentPage = it.page
                 this.page.totalPages = it.totalPages
-                // TODO convert to reactive stream
+                val results = ArrayList<DisplayItem>()
                 for (tvShow in it.results) {
-                    popularTvShows.add(itemMapper.apply(tvShow))
+                    results.add(itemMapper.apply(tvShow))
                 }
-                _popularTvShowsLiveData.postValue(DataHolder.Success(popularTvShows))
+                _popularTvShowsLiveData.postValue(DataHolder.Success(results))
+                popularTvShows.addAll(results)
             }, {
                 it.printStackTrace()
                 _popularTvShowsLiveData.postValue(DataHolder.Fail(errorFactory.createErrorFromThrowable(it)))

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Popular Tv Shows</string>
+    <string name="error_message_unknowon_error">An unknown error has been occurred!</string>
 </resources>

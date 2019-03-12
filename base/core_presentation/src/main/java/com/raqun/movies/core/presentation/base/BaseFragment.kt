@@ -2,14 +2,15 @@ package com.raqun.movies.core.presentation.base
 
 import android.content.Context
 import android.os.Bundle
-import android.provider.Settings.Global.getString
 import android.view.*
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.annotation.MenuRes
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
+import com.raqun.movies.core.error.Error
 import com.raqun.movies.core.presentation.Constants
-import dagger.android.AndroidInjection
+import com.raqun.movies.core.presentation.R
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
 
@@ -61,8 +62,12 @@ abstract class BaseFragment : Fragment(), BaseView {
     }
 
     override fun onError(e: Error) {
-        // handle error
-        //Toast.makeText(context, e?.message, Toast.LENGTH_LONG).show()
+        val message = when (e) {
+            is Error.UnknownError -> getString(R.string.error_message_unknowon_error)
+            is Error.BusinessError -> e.message
+            is Error.ApiError -> e.message
+        }
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
 
     protected fun setActivityTitle(title: String) {

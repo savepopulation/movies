@@ -6,12 +6,15 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.raqun.movies.core.model.DataHolder
 import com.raqun.movies.core.presentation.base.BaseFragment
 import com.raqun.movies.core.presentation.extensions.setup
 import com.raqun.movies.core.presentation.recyclerview.RecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_popular_tv_shows.*
 import javax.inject.Inject
+
 
 class PopularTvShowsFragment : BaseFragment() {
 
@@ -21,31 +24,54 @@ class PopularTvShowsFragment : BaseFragment() {
     @Inject
     protected lateinit var popularTvShowsAdapter: RecyclerViewAdapter
 
-    protected lateinit var viewModelPopularTv: PopularTvShowsViewModel
+    protected lateinit var viewModelPopularTvShows: PopularTvShowsViewModel
 
     override fun getLayoutRes() = R.layout.fragment_popular_tv_shows
 
+    private val recyclerViewOnScrollListener = object : RecyclerView.OnScrollListener() {
+
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            val visibleItemCount = recyclerViewPopularTvShows.childCount
+            val totalItemCount = recyclerViewPopularTvShows.layoutManager?.itemCount ?: 0
+            val firstVisibleItemPosition =
+                (recyclerViewPopularTvShows.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+
+            if (!(viewModelPopularTvShows.popularTvShowsLiveData.value is DataHolder.Loading)) {
+                if (visibleItemCount + firstVisibleItemPosition >= totalItemCount - 5
+                    && firstVisibleItemPosition >= 0
+                ) {
+                    viewModelPopularTvShows.getPopularTvShowsByPagination()
+                }
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModelPopularTv = ViewModelProviders.of(this, vmFactory).get(PopularTvShowsViewModel::class.java)
+        viewModelPopularTvShows = ViewModelProviders.of(this, vmFactory).get(PopularTvShowsViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerViewPopularTvShows.setup(context = activity!!, adapter = popularTvShowsAdapter)
+        recyclerViewPopularTvShows.apply {
+            setup(context = activity!!, adapter = popularTvShowsAdapter)
+            addOnScrollListener(recyclerViewOnScrollListener)
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModelPopularTv.popularTvShowsLiveData.observe(this, Observer {
+        viewModelPopularTvShows.popularTvShowsLiveData.observe(this, Observer {
+            swipteToRefreshLayoutShows.isRefreshing = it is DataHolder.Loading
             when (it) {
                 is DataHolder.Success -> popularTvShowsAdapter.update(it.data)
-                is DataHolder.Fail -> Log.e("result", "fail")
-                is DataHolder.Loading -> Log.e("result", "loading")
+                is DataHolder.Fail -> onError(it.e)
+                is DataHolder.Loading -> Log.e("loading", "tv shows")
             }
         })
 
-        viewModelPopularTv.getPopularTvShowsByPagination()
+        viewModelPopularTvShows.getPopularTvShowsByPagination()
     }
 
     companion object {
