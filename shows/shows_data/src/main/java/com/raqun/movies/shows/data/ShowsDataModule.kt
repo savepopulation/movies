@@ -1,7 +1,7 @@
 package com.raqun.movies.shows.data
 
 import com.raqun.movies.core.data.source.DataSource
-import com.raqun.movies.shows.domain.PagedTvShow
+import com.raqun.movies.shows.domain.PagedTvShows
 import com.raqun.movies.shows.domain.TvShowsRepository
 import dagger.Module
 import dagger.Provides
@@ -17,7 +17,7 @@ class ShowsDataModule {
 
     @Provides
     @Singleton
-    fun provideShowsRemoteDataSource(showsServices: ShowsServices): DataSource.RetrieveRemoteDataSource<Int, PagedTvShow> =
+    fun provideShowsRemoteDataSource(showsServices: ShowsServices): DataSource.RetrieveRemoteDataSource<Int, PagedTvShows> =
         ShowsRemoteDataSource(showsServices)
 
     @Provides

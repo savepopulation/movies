@@ -8,7 +8,7 @@ import io.reactivex.Single
 interface DataSource {
 
     interface RetrieveRemoteDataSource<Req, Res : Any> : DataSource {
-        fun getResult(request: Req): Single<Res?>?
+        fun getResult(request: Req): Single<Res>
     }
 
 }

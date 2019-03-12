@@ -6,8 +6,8 @@ import io.reactivex.Single
 
 interface Interactor {
 
-    interface ReactiveRetrieveInteractor<P : Params, R : Any?> : Interactor {
-        fun execute(params: P): Single<R?>?
+    interface ReactiveRetrieveInteractor<P : Params, R : Any> : Interactor {
+        fun execute(params: P): Observable<R>
     }
 
     // marker class
