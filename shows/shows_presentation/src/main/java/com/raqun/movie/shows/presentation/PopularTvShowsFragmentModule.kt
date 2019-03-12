@@ -7,6 +7,6 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class PopularTvShowsFragmentModule {
     @FragmentScope
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = [PopularTvShowsPresentationModule::class])
     abstract fun contributeShowsFragmentInjector(): PopularTvShowsFragment
 }

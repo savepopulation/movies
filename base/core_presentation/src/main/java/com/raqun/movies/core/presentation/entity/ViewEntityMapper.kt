@@ -1,5 +1,5 @@
 package com.raqun.movies.core.presentation.entity
 
-interface ViewEntityMapper<R, T : ViewEntity> {
-    fun map(value: R): T
-}
+import io.reactivex.functions.Function
+
+interface ViewEntityMapper<T : Any?, R : ViewEntity> : Function<T, R>
