@@ -27,4 +27,5 @@ object Versions {
     const val viewModelVersion = "2.0.0"
     const val rxKotlinVersion = "2.3.0"
     const val rxAndroidVersion = "2.1.1"
+    const val picassoVersion = "2.71828"
 }

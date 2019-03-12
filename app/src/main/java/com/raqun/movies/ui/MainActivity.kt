@@ -5,8 +5,11 @@ import com.raqun.movie.shows.presentation.PopularTvShowsFragment
 import com.raqun.movies.R
 import com.raqun.movies.core.presentation.base.BaseActivity
 import com.raqun.movies.core.presentation.extensions.transact
+import com.raqun.movies.core.presentation.navigation.UiNavigation
 
 class MainActivity : BaseActivity() {
+
+    override val uiNavigation = UiNavigation.ROOT
 
     override fun getLayoutRes() = R.layout.activity_main
 

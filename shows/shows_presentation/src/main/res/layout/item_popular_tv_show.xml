@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                style="@style/PopularTvShowItem.Wrapper">
 
     <ImageView
             android:id="@+id/imageview_poster"
-            android:layout_width="150dp"
-            android:layout_height="200dp"/>
+            style="@style/PopularTvShowItem.Image"/>
 
-    <TextView
-            android:id="@+id/textview_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+    <LinearLayout style="@style/PopularTvShowItem.Wrapper.Inner">
 
-    <TextView android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:id="@+id/textview_rating"
-    />
+        <TextView
+                android:id="@+id/textview_name"
+                style="@style/PopularTvShowItem.Title"/>
 
-</LinearLayout>
+        <TextView
+                android:id="@+id/textview_rating"
+                style="@style/PopularTvShowItem.Rating"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

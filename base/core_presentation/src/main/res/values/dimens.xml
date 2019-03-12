@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- View Dimens -->
+    <dimen name="default_item_holder_height">196dp</dimen>
+    <dimen name="default_item_inner_padding">10dp</dimen>
+
+    <!-- Text Dimens -->
+    <dimen name="default_title_text_size">18sp</dimen>
+    <dimen name="default_sub_title_text_size">16sp</dimen>
+
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="defaultItemTitleColor">@android:color/white</color>
+    <color name="defaultItemSubTitleColor">#CCCCCC</color>
+    <color name="defaultItemHolderColor">#AA000000</color>
+</resources>

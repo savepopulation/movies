@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="PopularTvShowItem"/>
+
+    <style name="PopularTvShowItem.Wrapper">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="PopularTvShowItem.Wrapper.Inner">
+        <item name="android:background">@color/defaultItemHolderColor</item>
+        <item name="android:padding">@dimen/default_item_inner_padding</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_alignParentBottom">true</item>
+    </style>
+
+    <style name="PopularTvShowItem.Image">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/default_item_holder_height</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="PopularTvShowItem.Title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/default_title_text_size</item>
+        <item name="android:textColor">@color/defaultItemTitleColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="PopularTvShowItem.Rating">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/default_sub_title_text_size</item>
+        <item name="android:textColor">@color/defaultItemSubTitleColor</item>
+    </style>
+
+</resources>
