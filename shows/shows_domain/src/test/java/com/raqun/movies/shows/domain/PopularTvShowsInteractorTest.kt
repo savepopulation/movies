@@ -15,6 +15,9 @@ class PopularTvShowsInteractorTest {
         PopularTvShowsInteractor(tvShowsRepository)
     }
 
+    /*
+     * Tests successful response
+     */
     @Test
     fun testPopularTvShowsInteractor_getPopularTvShows_Success() {
         val currentPage = 1
@@ -43,6 +46,9 @@ class PopularTvShowsInteractorTest {
             .dispose()
     }
 
+    /*
+     * Test failed response
+     */
     @Test
     fun testPopularTvShowsInteractor_getPopularTvShows_Fail() {
         val errorResponse = IOException("Failed to connect to network!")
@@ -60,6 +66,9 @@ class PopularTvShowsInteractorTest {
             .dispose()
     }
 
+    /*
+     * Test if page number is unexpected or not
+     */
     @Test
     fun testPopularTvShowsInteractor_getPopularTvShows_Fail_UnexpectedCurrentPageNumber() {
         val currentPage = 0
@@ -77,6 +86,9 @@ class PopularTvShowsInteractorTest {
         assert(result != null)
     }
 
+    /*
+     * Test if trying to reach above total page number
+     */
     @Test
     fun testPopularTvShowsInteractor_getPopularTvShows_Fail_UnexpectedCurrentPageRange() {
         val currentPage = 3

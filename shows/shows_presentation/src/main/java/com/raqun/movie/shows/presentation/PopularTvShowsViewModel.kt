@@ -11,9 +11,11 @@ import com.raqun.movies.core.presentation.recyclerview.DisplayItem
 import com.raqun.movies.shows.domain.PagedTvShows
 import com.raqun.movies.shows.domain.PopularTvShowsInteractor
 import com.raqun.movies.shows.domain.TvShow
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Function
 import io.reactivex.schedulers.Schedulers
+import java.util.*
 import javax.inject.Inject
 
 class PopularTvShowsViewModel @Inject constructor(
@@ -30,9 +32,6 @@ class PopularTvShowsViewModel @Inject constructor(
 
     val popularTvShowsLiveData: MediatorLiveData<DataHolder<List<DisplayItem>>>
         get() = _popularTvShowsLiveData
-
-    val pageLiveData: MutableLiveData<Int>
-        get() = _pageLiveData
 
     init {
         _popularTvShowsLiveData.value = DataHolder.Success(popularTvShows)
@@ -63,14 +62,16 @@ class PopularTvShowsViewModel @Inject constructor(
             .subscribe({
                 this.page.currentPage = it.page
                 this.page.totalPages = it.totalPages
-                val results = ArrayList<DisplayItem>()
-                for (tvShow in it.results) {
-                    results.add(itemMapper.apply(tvShow))
-                }
-                _popularTvShowsLiveData.postValue(DataHolder.Success(results))
-                popularTvShows.addAll(results)
+
+                Observable.fromIterable(it.results)
+                    .map { item -> itemMapper.apply(item) }
+                    .toList()
+                    .blockingGet()
+                    .run {
+                        _popularTvShowsLiveData.postValue(DataHolder.Success(this))
+                        popularTvShows.addAll(this)
+                    }
             }, {
-                it.printStackTrace()
                 _popularTvShowsLiveData.postValue(DataHolder.Fail(errorFactory.createErrorFromThrowable(it)))
             })
         compositeDisposable.add(popularTvShowsFetchDisposible!!)

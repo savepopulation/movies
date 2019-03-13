@@ -71,7 +71,9 @@ class PopularTvShowsFragment : BaseFragment() {
             }
         })
 
-        viewModelPopularTvShows.getPopularTvShowsByPagination()
+        if (savedInstanceState == null) {
+            viewModelPopularTvShows.getPopularTvShowsByPagination()
+        }
     }
 
     companion object {
