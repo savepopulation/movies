@@ -28,4 +28,5 @@ object Versions {
     const val rxKotlinVersion = "2.3.0"
     const val rxAndroidVersion = "2.1.1"
     const val picassoVersion = "2.71828"
+    const val mockitoVersion = "2.18.3"
 }

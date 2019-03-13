@@ -43,6 +43,13 @@ dependencies {
     kapt Libraries.dagger2AndroidProcessor
     testAnnotationProcessor Libraries.dagger2Compiler
     compileOnly Libraries.javaxAnnotation
+
+    // Testing
+    testImplementation TestLibraries.jUnit
+    androidTestImplementation TestLibraries.runnner
+    androidTestImplementation TestLibraries.espressoCore
+    testImplementation TestLibraries.mockitoCore
+    androidTestImplementation TestLibraries.mockitoAndroid
 }
 
 configurations.all {

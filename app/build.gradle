@@ -30,9 +30,4 @@ dependencies {
 
     // Support Libraries
     implementation SupportLibraries.appCompat
-
-    // Testing
-    testImplementation TestLibraries.jUnit
-    androidTestImplementation TestLibraries.runnner
-    androidTestImplementation TestLibraries.espressoCore
 }

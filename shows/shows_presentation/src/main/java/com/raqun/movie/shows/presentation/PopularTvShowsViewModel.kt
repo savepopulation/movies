@@ -54,9 +54,9 @@ class PopularTvShowsViewModel @Inject constructor(
     }
 
     @SuppressLint("CheckResult")
-    private fun fetchPopularTvShows(page: Int) {
+    private fun fetchPopularTvShows(currentPage: Int) {
         _popularTvShowsLiveData.value = DataHolder.Loading()
-        val pagedParams = PopularTvShowsInteractor.PopularTvShowsParams(page)
+        val pagedParams = PopularTvShowsInteractor.PopularTvShowsParams(currentPage, page.totalPages)
         val popularTvShowsFetchDisposible = popularTvShowsInteractor.execute(pagedParams)
             .observeOn(Schedulers.computation())
             .subscribeOn(Schedulers.io())

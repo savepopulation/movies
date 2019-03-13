@@ -20,6 +20,8 @@ object TestLibraries {
     const val jUnit = "junit:junit:${Versions.jUnitVersion}"
     const val runnner = "androidx.test:runner:${Versions.testRunnerVersion}"
     const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoCoreVersion}"
+    const val mockitoCore = "org.mockito:mockito-core:${Versions.mockitoVersion}"
+    const val mockitoAndroid = "org.mockito:mockito-android:${Versions.mockitoVersion}"
 }
 
 /*
