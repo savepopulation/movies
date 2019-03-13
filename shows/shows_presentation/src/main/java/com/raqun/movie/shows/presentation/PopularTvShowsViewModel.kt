@@ -1,6 +1,7 @@
 package com.raqun.movie.shows.presentation
 
 import android.annotation.SuppressLint
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -30,7 +31,7 @@ class PopularTvShowsViewModel @Inject constructor(
     private val popularTvShows = ArrayList<DisplayItem>()
     private val page = Page()
 
-    val popularTvShowsLiveData: MediatorLiveData<DataHolder<List<DisplayItem>>>
+    val popularTvShowsLiveData: LiveData<DataHolder<List<DisplayItem>>>
         get() = _popularTvShowsLiveData
 
     init {
