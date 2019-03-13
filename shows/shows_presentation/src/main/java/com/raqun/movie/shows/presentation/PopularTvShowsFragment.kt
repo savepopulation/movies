@@ -65,7 +65,7 @@ class PopularTvShowsFragment : BaseFragment() {
         viewModelPopularTvShows.popularTvShowsLiveData.observe(this, Observer {
             swipteToRefreshLayoutShows.isRefreshing = it is DataHolder.Loading
             when (it) {
-                is DataHolder.Success -> popularTvShowsAdapter.update(it.data)
+                is DataHolder.Success -> popularTvShowsAdapter.addItems(it.data)
                 is DataHolder.Fail -> onError(it.e)
                 is DataHolder.Loading -> Log.e("loading", "tv shows")
             }

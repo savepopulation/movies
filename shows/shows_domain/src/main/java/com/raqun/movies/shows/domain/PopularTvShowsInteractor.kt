@@ -2,6 +2,7 @@ package com.raqun.movies.shows.domain
 
 import com.raqun.movies.core.domain.Interactor
 import io.reactivex.Observable
+import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
 class PopularTvShowsInteractor @Inject constructor(private val tvShowsRepository: TvShowsRepository) :
@@ -12,7 +13,7 @@ class PopularTvShowsInteractor @Inject constructor(private val tvShowsRepository
             throw IllegalArgumentException("Invalid current page number")
         }
 
-        if (params.page >= params.totalPage) {
+        if (params.page > params.totalPage) {
             throw IllegalStateException("No more pages available!")
         }
 

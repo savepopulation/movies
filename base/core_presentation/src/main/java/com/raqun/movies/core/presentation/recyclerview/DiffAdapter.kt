@@ -3,6 +3,8 @@ package com.raqun.movies.core.presentation.recyclerview
 import androidx.recyclerview.widget.DiffUtil
 
 interface DiffAdapter {
+    fun addItems(newItems: List<DisplayItem>)
+
     fun update(newItems: List<DisplayItem>)
 
     fun updateAllItems(newItems: List<DisplayItem>)

@@ -66,7 +66,11 @@ class RecyclerViewAdapter constructor(
         result.dispatchUpdatesTo(this)
     }
 
-    private fun calculateDiffResult(newItems: List<DisplayItem>): DiffUtil.DiffResult =
-        calculateDiff(newItems)
+    override fun addItems(newItems: List<DisplayItem>) {
+        val startRange = items.size
+        items.addAll(newItems)
+        notifyItemRangeChanged(startRange, newItems.size)
+    }
 
+    private fun calculateDiffResult(newItems: List<DisplayItem>): DiffUtil.DiffResult = calculateDiff(newItems)
 }
