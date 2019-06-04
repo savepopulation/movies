@@ -29,4 +29,5 @@ object Versions {
     const val rxAndroidVersion = "2.1.1"
     const val picassoVersion = "2.71828"
     const val mockitoVersion = "2.18.3"
+    const val supportDesignVersion = "1.0.0-rc01"
 }

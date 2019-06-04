@@ -30,4 +30,5 @@ dependencies {
 
     // Support Libraries
     implementation SupportLibraries.appCompat
+    implementation SupportLibraries.design
 }

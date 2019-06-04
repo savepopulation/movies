@@ -5,7 +5,42 @@
     <dimen name="default_item_inner_padding">10dp</dimen>
 
     <!-- Text Dimens -->
-    <dimen name="default_title_text_size">18sp</dimen>
-    <dimen name="default_sub_title_text_size">16sp</dimen>
+    <dimen name="default_title_text_size">16sp</dimen>
+    <dimen name="default_sub_title_text_size">14sp</dimen>
+
+    <!-- Material Style Dimens -->
+    <dimen name="default_margin">8dp</dimen>
+    <dimen name="default_padding">8dp</dimen>
+
+    <!-- Default Dimens -->
+    <dimen name="size_large">24dp</dimen>
+    <dimen name="size_default">16dp</dimen>
+    <dimen name="size_half">8dp</dimen>
+    <dimen name="size_small">4dp</dimen>
+    <dimen name="default_toolbar_content_inset">16dp</dimen>
+
+    <!-- CardView Dimens -->
+    <dimen name="default_cardview_margin">10dp</dimen>
+    <dimen name="default_cardview_elevation">2dp</dimen>
+    <dimen name="default_cardview_radius">4dp</dimen>
+
+    <!-- Text Sizes -->
+    <dimen name="default_text_size">14sp</dimen>
+    <dimen name="title_text_size">16sp</dimen>
+    <dimen name="small_text_size">12sp</dimen>
+
+    <!-- Component Dimens -->
+    <dimen name="default_button_height">48dp</dimen>
+    <dimen name="default_button_width">144dp</dimen>
+
+    <!-- Other Dimens -->
+    <dimen name="default_card_view_elevaion">2dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="product_card_view_height">172dp</dimen>
+    <dimen name="product_row_height">144dp</dimen>
+    <dimen name="product_row_width">104dp</dimen>
+    <dimen name="product_grid_row_height">156dp</dimen>
+
+    <dimen name="toolbar_expanded_title_margin_bottom">72dp</dimen>
 
 </resources>

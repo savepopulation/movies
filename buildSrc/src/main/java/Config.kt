@@ -2,7 +2,7 @@
  * App configuration
  */
 object Config {
-    const val applicationId = "com.raqun.movies"
+    const val applicationId = "com.raqun.backlight"
     const val minSdkVersion = Versions.minSdkVersion
     const val targetSdkVersion = Versions.targetSdkVersion
     const val compileSdkVersion = Versions.compileSdkVersion

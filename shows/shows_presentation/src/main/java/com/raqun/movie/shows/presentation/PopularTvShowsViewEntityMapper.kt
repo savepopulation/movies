@@ -7,7 +7,14 @@ import io.reactivex.functions.Function
 class PopularTvShowsViewEntityMapper : Function<TvShow, DisplayItem> {
 
     override fun apply(t: TvShow): DisplayItem {
-        return PopularTvShowViewEntity(t.id, t.name, t.votesAverage, IMAGE_BASE_URL + t.posterPath)
+        return PopularTvShowViewEntity(
+            t.id,
+            t.name,
+            t.votesAverage,
+            IMAGE_BASE_URL + t.posterPath,
+            t.overview,
+            t.VoteCount
+        )
     }
 
     companion object {

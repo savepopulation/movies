@@ -1,20 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                style="@style/PopularTvShowItem.Wrapper">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                style="@style/PopularTvShowItem.Wrapper"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="12dp">
 
     <ImageView
             android:id="@+id/imageview_poster"
             style="@style/PopularTvShowItem.Image"/>
 
-    <LinearLayout style="@style/PopularTvShowItem.Wrapper.Inner">
+    <LinearLayout
+            android:layout_below="@+id/imageview_poster"
+            style="@style/PopularTvShowItem.Wrapper.Inner">
 
         <TextView
                 android:id="@+id/textview_name"
                 style="@style/PopularTvShowItem.Title"/>
 
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_marginTop="4dp"
+                      android:orientation="horizontal"
+                      android:layout_height="wrap_content">
+
+            <ImageView android:layout_width="18dp"
+                       android:layout_height="18dp"
+                       android:tint="#ffc600"
+                       app:srcCompat="@drawable/ic_baseline_star_24px"
+                       android:layout_gravity="center_vertical"/>
+
+            <TextView
+                    android:layout_marginLeft="4dp"
+                    android:id="@+id/textview_rating"
+                    style="@style/PopularTvShowItem.Raiting"
+                    android:layout_gravity="center_vertical"/>
+
+        </LinearLayout>
+
         <TextView
-                android:id="@+id/textview_rating"
-                style="@style/PopularTvShowItem.Rating"/>
+                android:layout_marginTop="4dp"
+                android:id="@+id/textview_overview"
+                style="@style/PopularTvShowItem.OverView"/>
 
     </LinearLayout>
 

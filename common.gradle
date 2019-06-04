@@ -10,6 +10,7 @@ android {
         targetSdkVersion Config.targetSdkVersion
         versionCode Config.versionCode
         versionName Config.versionName
+        vectorDrawables.useSupportLibrary = true
     }
 
     flavorDimensions Dimensions.default

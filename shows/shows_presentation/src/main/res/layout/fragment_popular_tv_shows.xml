@@ -3,13 +3,16 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swipteToRefreshLayoutShows"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/defaultBackgroundColor">
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewPopularTvShows"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

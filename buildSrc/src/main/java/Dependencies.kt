@@ -11,6 +11,7 @@ object CoreLibraries {
 object SupportLibraries {
     const val appCompat = "androidx.appcompat:appcompat:${Versions.xVersion}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.xVersion}"
+    const val design = "com.google.android.material:material:${Versions.supportDesignVersion}"
 }
 
 /*

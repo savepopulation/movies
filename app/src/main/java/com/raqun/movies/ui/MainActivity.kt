@@ -11,6 +11,8 @@ class MainActivity : BaseActivity() {
 
     override val uiNavigation = UiNavigation.ROOT
 
+    override val toolbarRes: Int = R.id.toolbarDefault
+
     override fun getLayoutRes() = R.layout.activity_main
 
     override fun onCreate(savedInstanceState: Bundle?) {
