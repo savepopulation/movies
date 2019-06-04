@@ -53,6 +53,11 @@ class PopularTvShowsViewModel @Inject constructor(
         }
     }
 
+    fun refreshPopularTvShows() {
+        page.currentPage = 0
+        getPopularTvShowsByPagination()
+    }
+
     @SuppressLint("CheckResult")
     private fun fetchPopularTvShows(currentPage: Int) {
         _popularTvShowsLiveData.value = DataHolder.Loading()

@@ -52,11 +52,13 @@ class PopularTvShowsFragment : BaseFragment() {
         viewModelPopularTvShows = ViewModelProviders.of(this, vmFactory).get(PopularTvShowsViewModel::class.java)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initView() {
         recyclerViewPopularTvShows.apply {
             setup(context = activity!!, adapter = popularTvShowsAdapter)
             addOnScrollListener(recyclerViewOnScrollListener)
+        }
+        swipteToRefreshLayoutShows.setOnRefreshListener {
+            viewModelPopularTvShows.refreshPopularTvShows()
         }
     }
 
