@@ -18,6 +18,7 @@ object Modules {
     const val corePresentation = "$BASE_DIRECTORY:core_presentation"
     const val coreDomain = "$BASE_DIRECTORY:core_domain"
     const val coreData = "$BASE_DIRECTORY:core_data"
+    const val coreNavigation = "$BASE_DIRECTORY:core_navigation"
 
     /*
      * Tv Shows
