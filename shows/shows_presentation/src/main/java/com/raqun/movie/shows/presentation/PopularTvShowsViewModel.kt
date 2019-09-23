@@ -20,7 +20,7 @@ import java.util.*
 import javax.inject.Inject
 
 class PopularTvShowsViewModel @Inject constructor(
-    private val getPopularTvShowsInteractor: Interactor.ReactiveRetrieveInteractor<GetPopularTvShowsInteractor.PopularTvShowsParams, PagedTvShows>,
+    private val getPopularTvShowsInteractor: Interactor.ReactiveRetrieveInteractor<GetPopularTvShowsInteractor.Params, PagedTvShows>,
     private val itemMapper: Function<TvShow, DisplayItem>,
     private val errorFactory: ErrorFactory
 ) : ViewModel() {
@@ -61,7 +61,7 @@ class PopularTvShowsViewModel @Inject constructor(
     @SuppressLint("CheckResult")
     private fun fetchPopularTvShows(currentPage: Int) {
         _popularTvShowsLiveData.value = DataHolder.Loading()
-        val pagedParams = GetPopularTvShowsInteractor.PopularTvShowsParams(currentPage, page.totalPages)
+        val pagedParams = GetPopularTvShowsInteractor.Params(currentPage, page.totalPages)
         val popularTvShowsFetchDisposible = getPopularTvShowsInteractor.execute(pagedParams)
             .observeOn(Schedulers.computation())
             .subscribeOn(Schedulers.io())
