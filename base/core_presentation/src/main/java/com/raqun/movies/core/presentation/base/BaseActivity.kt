@@ -33,15 +33,8 @@ abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
     @IdRes
     open val toolbarRes = Constants.NO_RES
 
-    @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
-
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> = dispatchingAndroidInjector
-
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
-        onInject()
         super.onCreate(savedInstanceState)
         setContentView(getLayoutRes())
         if (toolbarRes != Constants.NO_RES) {
@@ -92,9 +85,4 @@ abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
             UiNavigation.ROOT -> supportActionBar?.setDisplayHomeAsUpEnabled(false)
         }
     }
-
-    open fun onInject() {
-        // can be overridden
-    }
-
 }
