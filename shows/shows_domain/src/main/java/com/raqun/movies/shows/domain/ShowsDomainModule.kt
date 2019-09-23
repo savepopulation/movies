@@ -9,7 +9,7 @@ class ShowsDomainModule {
 
     @Provides
     fun providePopularTvShowsInteractor(tvShowsRepository: TvShowsRepository):
-            Interactor.ReactiveRetrieveInteractor<GetPopularTvShowsInteractor.PopularTvShowsParams, PagedTvShows> =
+            Interactor.ReactiveRetrieveInteractor<GetPopularTvShowsInteractor.Params, PagedTvShows> =
         GetPopularTvShowsInteractor(tvShowsRepository)
 
 }
