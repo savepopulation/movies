@@ -47,6 +47,6 @@ other data related classes such as repository implementaions, remote local data 
 - Kotlin DSL
 ```
 
-## Screen Shots:
+## Screenshots:
 <img src="https://github.com/savepopulation/movies/blob/master/art/ss1.png"
 height="384" width="210">
