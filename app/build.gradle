@@ -27,6 +27,7 @@ dependencies {
     implementation project(Modules.showsPresentation)
     implementation project(Modules.showsDomain)
     implementation project(Modules.showsData)
+    implementation project(Modules.showsDetailsPresentation)
 
     // Support Libraries
     implementation SupportLibraries.appCompat

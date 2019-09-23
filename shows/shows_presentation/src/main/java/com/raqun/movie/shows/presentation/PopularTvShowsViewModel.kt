@@ -9,9 +9,7 @@ import com.raqun.movies.core.domain.Interactor
 import com.raqun.movies.core.error.ErrorFactory
 import com.raqun.movies.core.model.DataHolder
 import com.raqun.movies.core.presentation.recyclerview.DisplayItem
-import com.raqun.movies.shows.domain.PagedTvShows
-import com.raqun.movies.shows.domain.GetPopularTvShowsInteractor
-import com.raqun.movies.shows.domain.TvShow
+import com.raqun.movies.shows.domain.*
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Function

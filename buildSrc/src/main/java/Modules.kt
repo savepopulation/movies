@@ -25,4 +25,5 @@ object Modules {
     const val showsPresentation = "$SHOWS_DIRECTORY:shows_presentation"
     const val showsDomain = "$SHOWS_DIRECTORY:shows_domain"
     const val showsData = "$SHOWS_DIRECTORY:shows_data"
+    const val showsDetailsPresentation = "$SHOWS_DIRECTORY:shows_details_presentation"
 }
