@@ -7,12 +7,12 @@ import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.Mockito
 import java.io.IOException
 
-class PopularTvShowsInteractorTest {
+class GetPopularTvShowsInteractorTest {
 
     private var tvShowsRepository = Mockito.mock(TvShowsRepository::class.java)
 
     private val popularTvShowsInteractor by lazy {
-        PopularTvShowsInteractor(tvShowsRepository)
+        GetPopularTvShowsInteractor(tvShowsRepository)
     }
 
     /*
@@ -24,7 +24,7 @@ class PopularTvShowsInteractorTest {
         val totalPage = 2
         val pageResultCount = 10
         val totalResults = totalPage * pageResultCount
-        val params = PopularTvShowsInteractor.PopularTvShowsParams(currentPage, totalPage)
+        val params = GetPopularTvShowsInteractor.PopularTvShowsParams(currentPage, totalPage)
 
         val successResponse = Single.just(
             PagedTvShows(
@@ -54,7 +54,7 @@ class PopularTvShowsInteractorTest {
         val errorResponse = IOException("Failed to connect to network!")
         val currentPage = 1
         val totalPage = 2
-        val params = PopularTvShowsInteractor.PopularTvShowsParams(currentPage, totalPage)
+        val params = GetPopularTvShowsInteractor.PopularTvShowsParams(currentPage, totalPage)
 
         Mockito.`when`(tvShowsRepository.getPopularTShows(anyInt()))
             .thenReturn(Single.error(errorResponse))
@@ -73,7 +73,7 @@ class PopularTvShowsInteractorTest {
     fun testPopularTvShowsInteractor_getPopularTvShows_Fail_UnexpectedCurrentPageNumber() {
         val currentPage = 0
         val totalPage = 2
-        val params = PopularTvShowsInteractor.PopularTvShowsParams(currentPage, totalPage)
+        val params = GetPopularTvShowsInteractor.PopularTvShowsParams(currentPage, totalPage)
 
         var result: java.lang.IllegalArgumentException? = null
         try {
@@ -93,7 +93,7 @@ class PopularTvShowsInteractorTest {
     fun testPopularTvShowsInteractor_getPopularTvShows_Fail_UnexpectedCurrentPageRange() {
         val currentPage = 3
         val totalPage = 2
-        val params = PopularTvShowsInteractor.PopularTvShowsParams(currentPage, totalPage)
+        val params = GetPopularTvShowsInteractor.PopularTvShowsParams(currentPage, totalPage)
 
         var result: java.lang.IllegalStateException? = null
         try {

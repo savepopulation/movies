@@ -10,7 +10,7 @@ import com.raqun.movies.core.error.ErrorFactory
 import com.raqun.movies.core.model.DataHolder
 import com.raqun.movies.core.presentation.recyclerview.DisplayItem
 import com.raqun.movies.shows.domain.PagedTvShows
-import com.raqun.movies.shows.domain.PopularTvShowsInteractor
+import com.raqun.movies.shows.domain.GetPopularTvShowsInteractor
 import com.raqun.movies.shows.domain.TvShow
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
@@ -20,7 +20,7 @@ import java.util.*
 import javax.inject.Inject
 
 class PopularTvShowsViewModel @Inject constructor(
-    private val popularTvShowsInteractor: Interactor.ReactiveRetrieveInteractor<PopularTvShowsInteractor.PopularTvShowsParams, PagedTvShows>,
+    private val getPopularTvShowsInteractor: Interactor.ReactiveRetrieveInteractor<GetPopularTvShowsInteractor.PopularTvShowsParams, PagedTvShows>,
     private val itemMapper: Function<TvShow, DisplayItem>,
     private val errorFactory: ErrorFactory
 ) : ViewModel() {
@@ -61,8 +61,8 @@ class PopularTvShowsViewModel @Inject constructor(
     @SuppressLint("CheckResult")
     private fun fetchPopularTvShows(currentPage: Int) {
         _popularTvShowsLiveData.value = DataHolder.Loading()
-        val pagedParams = PopularTvShowsInteractor.PopularTvShowsParams(currentPage, page.totalPages)
-        val popularTvShowsFetchDisposible = popularTvShowsInteractor.execute(pagedParams)
+        val pagedParams = GetPopularTvShowsInteractor.PopularTvShowsParams(currentPage, page.totalPages)
+        val popularTvShowsFetchDisposible = getPopularTvShowsInteractor.execute(pagedParams)
             .observeOn(Schedulers.computation())
             .subscribeOn(Schedulers.io())
             .subscribe({

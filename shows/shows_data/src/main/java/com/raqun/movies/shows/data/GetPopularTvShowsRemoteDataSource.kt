@@ -6,7 +6,7 @@ import com.raqun.movies.shows.domain.PagedTvShows
 import io.reactivex.Single
 import javax.inject.Inject
 
-class PopularTvShowsRemoteDataSource @Inject constructor(private val tvShowsServices: TvShowsServices) :
+class GetPopularTvShowsRemoteDataSource @Inject constructor(private val tvShowsServices: TvShowsServices) :
     DataSource.RetrieveRemoteDataSource<Int, PagedTvShows> {
 
     @SuppressLint("CheckResult")

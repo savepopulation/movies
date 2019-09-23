@@ -18,11 +18,11 @@ class ShowsDataModule {
     @Provides
     @Singleton
     fun provideShowsRemoteDataSource(tvShowsServices: TvShowsServices): DataSource.RetrieveRemoteDataSource<Int, PagedTvShows> =
-        PopularTvShowsRemoteDataSource(tvShowsServices)
+        GetPopularTvShowsRemoteDataSource(tvShowsServices)
 
     @Provides
     @Singleton
-    fun provideShowsRepository(popularTvShowsRemoteDataSource: PopularTvShowsRemoteDataSource): TvShowsRepository =
-        TvShowsRepositoryImpl(popularTvShowsRemoteDataSource)
+    fun provideShowsRepository(getPopularTvShowsRemoteDataSource: GetPopularTvShowsRemoteDataSource): TvShowsRepository =
+        TvShowsRepositoryImpl(getPopularTvShowsRemoteDataSource)
 
 }

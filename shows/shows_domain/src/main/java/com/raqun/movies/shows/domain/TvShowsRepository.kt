@@ -4,4 +4,6 @@ import io.reactivex.Single
 
 interface TvShowsRepository {
     fun getPopularTShows(page: Int): Single<PagedTvShows>
+
+    fun getShowDetail(id: Int): Single<TvShowDetail>
 }
