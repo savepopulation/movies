@@ -16,6 +16,8 @@ object Config {
  */
 object Fields {
     const val rootUrl = "ROOT_URL"
+    const val pName = "PACKAGE_NAME"
+
 }
 
 /*
