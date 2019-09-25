@@ -1,7 +1,6 @@
 package com.raqun.movies.shows.data
 
 import com.raqun.movies.core.data.source.DataSource
-import com.raqun.movies.shows.domain.GetTvShowDetailInteractor
 import com.raqun.movies.shows.domain.PagedTvShows
 import com.raqun.movies.shows.domain.TvShowDetail
 import com.raqun.movies.shows.domain.TvShowsRepository
@@ -15,7 +14,8 @@ class ShowsDataModule {
 
     @Provides
     @Singleton
-    fun provideShowsServices(retrofit: Retrofit): TvShowsServices = retrofit.create(TvShowsServices::class.java)
+    fun provideShowsServices(retrofit: Retrofit): TvShowsServices =
+        retrofit.create(TvShowsServices::class.java)
 
     @Provides
     fun provideGetPopularTvShowsRemoteDataSource(tvShowsServices: TvShowsServices): DataSource.RetrieveRemoteDataSource<Int, PagedTvShows> =
@@ -30,6 +30,7 @@ class ShowsDataModule {
     fun provideShowsRepository(
         getPopularTvShowsRemoteDataSource: DataSource.RetrieveRemoteDataSource<Int, PagedTvShows>,
         getTvShowDetailRemoteDatASource: DataSource.RetrieveRemoteDataSource<Int, TvShowDetail>
-    ) = TvShowsRepositoryImpl(getPopularTvShowsRemoteDataSource, getTvShowDetailRemoteDatASource)
+    ): TvShowsRepository =
+        TvShowsRepositoryImpl(getPopularTvShowsRemoteDataSource, getTvShowDetailRemoteDatASource)
 
 }

@@ -3,6 +3,7 @@
  */
 object Config {
     const val applicationId = "com.raqun.backlight"
+    const val rawPackageName = "com.raqun.movies"
     const val minSdkVersion = Versions.minSdkVersion
     const val targetSdkVersion = Versions.targetSdkVersion
     const val compileSdkVersion = Versions.compileSdkVersion
@@ -33,7 +34,7 @@ object Dimensions {
 object Prod {
     const val versionCode = Config.versionCode
     const val versionName = Config.versionName
-    const val packageName = Config.applicationId
+    const val packageName = Config.rawPackageName
 }
 
 object Dev {
@@ -42,5 +43,5 @@ object Dev {
     const val versionName = Config.versionName
     const val versionNameSuffix = suffix
     const val applicationIdSuffix = suffix
-    const val packageName = Config.applicationId + applicationIdSuffix
+    const val packageName = Config.rawPackageName + applicationIdSuffix
 }

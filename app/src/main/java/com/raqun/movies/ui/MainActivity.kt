@@ -3,11 +3,11 @@ package com.raqun.movies.ui
 import android.os.Bundle
 import com.raqun.movie.shows.presentation.PopularTvShowsFragment
 import com.raqun.movies.R
-import com.raqun.movies.core.presentation.base.BaseActivity
+import com.raqun.movies.core.presentation.BaseInjectionActivity
 import com.raqun.movies.core.presentation.extensions.transact
 import com.raqun.movies.core.presentation.navigation.UiNavigation
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseInjectionActivity() {
 
     override val uiNavigation = UiNavigation.ROOT
 

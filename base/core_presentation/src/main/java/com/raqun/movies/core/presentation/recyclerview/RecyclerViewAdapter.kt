@@ -15,11 +15,16 @@ class RecyclerViewAdapter constructor(
     private val viewBinderFactoryMap: Map<Int, ViewHolderBinder>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), DiffAdapter {
 
+    var itemClickListener: ((item: DisplayItem) -> Unit)? = null
+    var itemLongClickListener: ((item: DisplayItem) -> Boolean)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         viewHolderFactoryMap[viewType]?.createViewHolder(parent)!!
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         viewBinderFactoryMap[items[position].type()]?.bind(holder, items[position])
+        (holder as ViewHolder<*>).itemClickListener = itemClickListener
+        holder.itemLongClickListener = itemLongClickListener
     }
 
     override fun getItemCount() = items.size
@@ -72,5 +77,6 @@ class RecyclerViewAdapter constructor(
         notifyItemRangeChanged(startRange, newItems.size)
     }
 
-    private fun calculateDiffResult(newItems: List<DisplayItem>): DiffUtil.DiffResult = calculateDiff(newItems)
+    private fun calculateDiffResult(newItems: List<DisplayItem>): DiffUtil.DiffResult =
+        calculateDiff(newItems)
 }

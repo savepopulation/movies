@@ -29,18 +29,24 @@ object TestLibraries {
  * Common Libraries
  */
 object Libraries {
-    const val dagger2AndroidSupport = "com.google.dagger:dagger-android-support:${Versions.dagger2Version}"
+    const val dagger2AndroidSupport =
+        "com.google.dagger:dagger-android-support:${Versions.dagger2Version}"
     const val dagger2Compiler = "com.google.dagger:dagger-compiler:${Versions.dagger2Version}"
-    const val dagger2AndroidProcessor = "com.google.dagger:dagger-android-processor:${Versions.dagger2Version}"
+    const val dagger2AndroidProcessor =
+        "com.google.dagger:dagger-android-processor:${Versions.dagger2Version}"
     const val javaxAnnotation = "org.glassfish:javax.annotation:${Versions.javaxAnnotationVersion}"
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}"
-    const val logInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpLoggingInterceptorVersion}"
+    const val logInterceptor =
+        "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpLoggingInterceptorVersion}"
     const val gson = "com.squareup.retrofit2:converter-gson:${Versions.gsonVersion}"
     const val okHttp = "com.squareup.okhttp3:okhttp:${Versions.okHttpVersion}"
     const val viewModel = "androidx.lifecycle:lifecycle-viewmodel:${Versions.viewModelVersion}"
-    const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.viewModelVersion}"
+    const val lifecycleExtensions =
+        "androidx.lifecycle:lifecycle-extensions:${Versions.viewModelVersion}"
     const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlinVersion}"
     const val rxAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroidVersion}"
-    const val retrofitRxAdapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofitVersion}"
+    const val retrofitRxAdapter =
+        "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofitVersion}"
     const val picasso = "com.squareup.picasso:picasso:${Versions.picassoVersion}"
+    const val scalingLayout = "com.github.iammert:ScalingLayout:${Versions.scalingLayoutVersion}"
 }

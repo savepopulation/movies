@@ -4,14 +4,15 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.raqun.movies.core.domain.Interactor
 import com.raqun.movies.core.error.ErrorFactory
 import com.raqun.movies.core.model.DataHolder
 import com.raqun.movies.core.presentation.recyclerview.DisplayItem
-import com.raqun.movies.shows.domain.*
+import com.raqun.movies.core.presentation.viewmodel.ReactiveViewModel
+import com.raqun.movies.shows.domain.GetPopularTvShowsInteractor
+import com.raqun.movies.shows.domain.PagedTvShows
+import com.raqun.movies.shows.domain.TvShow
 import io.reactivex.Observable
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Function
 import io.reactivex.schedulers.Schedulers
 import java.util.*
@@ -21,11 +22,10 @@ class PopularTvShowsViewModel @Inject constructor(
     private val getPopularTvShowsInteractor: Interactor.ReactiveRetrieveInteractor<GetPopularTvShowsInteractor.Params, PagedTvShows>,
     private val itemMapper: Function<TvShow, DisplayItem>,
     private val errorFactory: ErrorFactory
-) : ViewModel() {
+) : ReactiveViewModel() {
 
     private val _popularTvShowsLiveData = MediatorLiveData<DataHolder<List<DisplayItem>>>()
     private val _pageLiveData = MutableLiveData<Int>()
-    private val compositeDisposable = CompositeDisposable()
     private val popularTvShows = ArrayList<DisplayItem>()
     private val page = Page()
 
@@ -76,14 +76,15 @@ class PopularTvShowsViewModel @Inject constructor(
                         popularTvShows.addAll(this)
                     }
             }, {
-                _popularTvShowsLiveData.postValue(DataHolder.Fail(errorFactory.createErrorFromThrowable(it)))
+                _popularTvShowsLiveData.postValue(
+                    DataHolder.Fail(
+                        errorFactory.createErrorFromThrowable(
+                            it
+                        )
+                    )
+                )
             })
-        compositeDisposable.add(popularTvShowsFetchDisposible!!)
-    }
-
-    override fun onCleared() {
-        compositeDisposable.clear()
-        super.onCleared()
+        action(popularTvShowsFetchDisposible!!)
     }
 
     data class Page(var currentPage: Int = 1, var totalPages: Int = 1)

@@ -13,7 +13,8 @@ import com.raqun.movies.core.presentation.recyclerview.ViewHolderBinder
 import com.raqun.movies.core.presentation.recyclerview.ViewHolderFactory
 import javax.inject.Inject
 
-class PopularTvShowsViewHolder private constructor(itemView: View) : ViewHolder<PopularTvShowViewEntity>(itemView) {
+class PopularTvShowsViewHolder private constructor(itemView: View) :
+    ViewHolder<PopularTvShowViewEntity>(itemView) {
 
     private val textViewName: TextView = itemView.findViewById(R.id.textview_name)
     private val textViewOverView: TextView = itemView.findViewById(R.id.textview_overview)
@@ -29,6 +30,9 @@ class PopularTvShowsViewHolder private constructor(itemView: View) : ViewHolder<
         )
         item.picture?.let {
             imageviewPoster.loadImage(it)
+        }
+        itemView.setOnClickListener {
+            itemClickListener?.invoke(item)
         }
     }
 

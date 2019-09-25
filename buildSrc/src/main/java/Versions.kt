@@ -30,4 +30,5 @@ object Versions {
     const val picassoVersion = "2.71828"
     const val mockitoVersion = "2.18.3"
     const val supportDesignVersion = "1.0.0-rc01"
+    const val scalingLayoutVersion = "1.2.1"
 }

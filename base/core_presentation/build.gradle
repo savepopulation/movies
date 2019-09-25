@@ -2,11 +2,12 @@ apply from: "$rootDir/common-android-library.gradle"
 dependencies {
 
     api project(Modules.core)
-    implementation project(Modules.coreNavigation)
+    api project(Modules.coreNavigation)
 
     // View
     api SupportLibraries.appCompat
     api SupportLibraries.recyclerView
+    api SupportLibraries.design
     api Libraries.lifecycleExtensions
     api Libraries.picasso
 }
