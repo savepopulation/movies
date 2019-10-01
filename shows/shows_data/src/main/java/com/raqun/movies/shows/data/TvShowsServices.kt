@@ -13,6 +13,6 @@ interface TvShowsServices {
     @GET("/3/tv/popular?api_key=${ApiConstants.API_KEY}")
     fun getPopularTvShows(@Query("page") page: Int = 1): Single<PagedApiResponse<List<TvShow>>>
 
-    @GET("/tv/{tv_id}?api_key=${ApiConstants.API_KEY}")
+    @GET("/3/tv/{tv_id}?api_key=${ApiConstants.API_KEY}")
     fun getTvShowDetail(@Path("tv_id") id: Int): Single<TvShowDetail>
 }
