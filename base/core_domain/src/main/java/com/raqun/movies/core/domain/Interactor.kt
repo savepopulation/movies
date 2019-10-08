@@ -1,8 +1,7 @@
 package com.raqun.movies.core.domain
 
-import com.raqun.movies.core.model.DataHolder
+import io.reactivex.Flowable
 import io.reactivex.Observable
-import io.reactivex.Single
 
 interface Interactor {
 
@@ -10,6 +9,9 @@ interface Interactor {
         fun execute(params: P): Observable<R>
     }
 
+    interface FlowableRetrieveInteractor<P : Params, R : Any> : Interactor {
+        fun execute(params: P): Flowable<R>
+    }
     // marker class
     abstract class Params
 }

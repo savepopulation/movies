@@ -9,4 +9,6 @@ dependencies {
     api Libraries.okHttp
     api Libraries.retrofitRxAdapter
     api Libraries.room
+
+    api 'androidx.room:room-rxjava2:2.1.0-alpha06'
 }

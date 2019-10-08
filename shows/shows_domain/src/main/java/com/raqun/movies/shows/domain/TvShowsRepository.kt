@@ -1,9 +1,9 @@
 package com.raqun.movies.shows.domain
 
-import io.reactivex.Single
+import io.reactivex.Flowable
 
 interface TvShowsRepository {
-    fun getPopularTShows(page: Int): Single<PagedTvShows>
+    fun getPopularTShows(page: Int): Flowable<TvShow>
 
-    fun getShowDetail(id: Int): Single<TvShowDetail>
+    fun getShowDetail(id: Int): Flowable<TvShowDetail>
 }
