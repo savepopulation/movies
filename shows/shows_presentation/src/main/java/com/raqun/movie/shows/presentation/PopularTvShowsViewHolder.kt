@@ -17,7 +17,6 @@ class PopularTvShowsViewHolder private constructor(itemView: View) :
     ViewHolder<PopularTvShowViewEntity>(itemView) {
 
     private val textViewName: TextView = itemView.findViewById(R.id.textview_name)
-    private val textViewOverView: TextView = itemView.findViewById(R.id.textview_overview)
     private val textViewRating: TextView = itemView.findViewById(R.id.textview_rating)
     private val imageviewPoster: ImageView = itemView.findViewById(R.id.imageview_poster)
 

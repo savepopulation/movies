@@ -38,11 +38,6 @@
 
         </LinearLayout>
 
-        <TextView
-                android:layout_marginTop="4dp"
-                android:id="@+id/textview_overview"
-                style="@style/PopularTvShowItem.OverView"/>
-
     </LinearLayout>
 
 </RelativeLayout>
