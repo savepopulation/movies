@@ -11,9 +11,7 @@ class PopularTvShowsViewEntityMapper : Function<TvShow, DisplayItem> {
             t.id,
             t.name,
             t.votesAverage,
-            IMAGE_BASE_URL + t.posterPath,
-            t.overview,
-            t.VoteCount
+            IMAGE_BASE_URL + t.posterPath
         )
     }
 

@@ -8,4 +8,5 @@ dependencies {
     api Libraries.logInterceptor
     api Libraries.okHttp
     api Libraries.retrofitRxAdapter
+    api Libraries.room
 }

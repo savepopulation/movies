@@ -23,11 +23,8 @@ class PopularTvShowsViewHolder private constructor(itemView: View) :
 
     override fun bind(item: PopularTvShowViewEntity) {
         textViewName.text = item.name
-        textViewOverView.text = item.overview
         textViewRating.text = itemView.context.getString(
-            R.string.avarage_rating, item.rating.toString(),
-            item.voteCount
-        )
+            R.string.avarage_rating, item.rating.toString())
         item.picture?.let {
             imageviewPoster.loadImage(it)
         }

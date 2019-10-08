@@ -31,4 +31,5 @@ object Versions {
     const val mockitoVersion = "2.18.3"
     const val supportDesignVersion = "1.0.0-rc01"
     const val scalingLayoutVersion = "1.2.1"
+    const val roomVersion = "2.1.0-alpha06"
 }

@@ -49,4 +49,6 @@ object Libraries {
         "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofitVersion}"
     const val picasso = "com.squareup.picasso:picasso:${Versions.picassoVersion}"
     const val scalingLayout = "com.github.iammert:ScalingLayout:${Versions.scalingLayoutVersion}"
+    const val room = "androidx.room:room-runtime:${Versions.roomVersion}"
+    const val roomCompiler = "androidx.room:room-compiler:${Versions.roomVersion}"
 }

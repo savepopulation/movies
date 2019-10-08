@@ -8,9 +8,7 @@ class PopularTvShowViewEntity(
     val id: Int?,
     val name: String?,
     val rating: Number?,
-    val picture: String?,
-    val overview: String?,
-    val voteCount: Int?
+    val picture: String?
 ) : ViewEntity, DisplayItem {
 
     override fun type() = PopularTvShowsPresentationConstants.TYPES.SHOW

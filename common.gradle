@@ -44,6 +44,7 @@ dependencies {
     kapt Libraries.dagger2AndroidProcessor
     testAnnotationProcessor Libraries.dagger2Compiler
     compileOnly Libraries.javaxAnnotation
+    kapt Libraries.roomCompiler
 
     // Testing
     testImplementation TestLibraries.jUnit
