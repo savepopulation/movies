@@ -9,11 +9,11 @@ import io.reactivex.Flowable
 
 @Dao
 interface TvShowsDao {
-    @Query("SELECT * FROM tv_shows")
-    fun getTvShows(page: Int): Flowable<TvShowEntity>
+    @Query("SELECT * FROM tv_shows ORDER BY popularity DESC LIMIT 20 OFFSET :page * 20")
+    fun getTvShows(page: Int): Flowable<List<TvShowEntity>>
 
     @Query("SELECT * FROM tv_shows")
-    fun getAllTvShows(): Flowable<TvShowEntity>
+    fun getAllTvShows(): Flowable<List<TvShowEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addTvShow(tvShowEntity: TvShowEntity): Long

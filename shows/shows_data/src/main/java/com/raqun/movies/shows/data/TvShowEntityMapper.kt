@@ -11,7 +11,8 @@ class TvShowEntityMapper : Function<TvShow, TvShowEntity> {
             p0.id!!.toLong(),
             p0.name!!,
             p0.posterPath!!,
-            p0.votesAverage!!
+            p0.votesAverage!!.toDouble(),
+            p0.popularity.toInt()
         )
     }
 

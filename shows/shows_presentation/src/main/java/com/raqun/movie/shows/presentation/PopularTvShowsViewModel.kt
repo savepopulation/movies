@@ -19,7 +19,7 @@ import java.util.*
 import javax.inject.Inject
 
 class PopularTvShowsViewModel @Inject constructor(
-    private val getPopularTvShowsInteractor: Interactor.ReactiveRetrieveInteractor<GetPopularTvShowsInteractor.Params, PagedTvShows>,
+    private val getPopularTvShowsInteractor: Interactor.FlowableRetrieveInteractor<GetPopularTvShowsInteractor.Params, TvShow>,
     private val itemMapper: Function<TvShow, DisplayItem>,
     private val errorFactory: ErrorFactory
 ) : ReactiveViewModel() {
@@ -64,10 +64,8 @@ class PopularTvShowsViewModel @Inject constructor(
             .observeOn(Schedulers.computation())
             .subscribeOn(Schedulers.io())
             .subscribe({
-                this.page.currentPage = it.page
-                this.page.totalPages = it.totalPages
 
-                Observable.fromIterable(it.results)
+                Observable.fromIterable(it)
                     .map { item -> itemMapper.apply(item) }
                     .toList()
                     .blockingGet()

@@ -5,11 +5,10 @@ import io.reactivex.Flowable
 import javax.inject.Inject
 
 class GetPopularTvShowsInteractor @Inject constructor(private val tvShowsRepository: TvShowsRepository) :
-    Interactor.FlowableRetrieveInteractor<GetPopularTvShowsInteractor.Params, PagedTvShows> {
+    Interactor.FlowableRetrieveInteractor<GetPopularTvShowsInteractor.Params, TvShow> {
 
-    override fun execute(params: Params): Flowable<PagedTvShows> {
+    override fun execute(params: Params): Flowable<TvShow> {
         require(params.page > 0) { "Invalid current page number" }
-        check(params.page <= params.totalPage) { "No more pages available!" }
         return tvShowsRepository.getPopularTShows(params.page)
     }
 

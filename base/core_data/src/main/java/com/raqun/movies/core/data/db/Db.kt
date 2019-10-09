@@ -19,9 +19,9 @@ class Db private constructor() {
                 const val SHOW_NAME = "name"
                 const val VOTE_AVARAGE = "vote_avarate"
                 const val POSTER_PATH = "poster_path"
+                const val POPULARITY = "popularity"
                 const val CREATE_DATE = Config.CREATE_DATE
                 const val UPDATE_DATE = Config.UPDATE_DATE
-
             }
         }
 

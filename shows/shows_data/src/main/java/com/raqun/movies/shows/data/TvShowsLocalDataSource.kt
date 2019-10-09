@@ -13,30 +13,34 @@ class TvShowsLocalDataSource @Inject constructor(
     private val tvShowMapper: Function<TvShowEntity, TvShow>,
     private val tvShowEntityMapper: Function<TvShow, TvShowEntity>
 
-) : DataSource.Local<String, TvShow> {
+) : DataSource.Local<String, List<TvShow>> {
 
-    override fun get(key: String): TvShow? {
+    override fun get(key: String): List<TvShow>? {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun get(page: Int): Flowable<TvShow> {
+    override fun get(page: Int): Flowable<List<TvShow>> {
         val shows = if (page == -1) {
             db.tvShowsDao().getAllTvShows()
         } else {
             db.tvShowsDao().getTvShows(page)
         }
-        return shows.map {
-            tvShowMapper.apply(it)
-        }
+        // TODO Handle flowable return
     }
 
     override fun getAll(): Flowable<TvShow> {
         return get(-1)
     }
 
-    override fun put(key: String?, data: TvShow): Boolean {
-        val result = db.tvShowsDao().addTvShow(tvShowEntityMapper.apply(data))
-        return result > 0
+    override fun put(key: String?, data: List<TvShow>): Boolean {
+        return try {
+            data.forEach {
+                db.tvShowsDao().addTvShow(tvShowEntityMapper.apply(it))
+            }
+            true
+        } catch (e: Exception) {
+            false
+        }
     }
 
     override fun remove(value: TvShow): Boolean {
@@ -50,6 +54,5 @@ class TvShowsLocalDataSource @Inject constructor(
     override fun clear() {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
-
 
 }

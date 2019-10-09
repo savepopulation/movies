@@ -18,7 +18,7 @@ class TvShowsRepositoryImpl @Inject constructor(
 ) : TvShowsRepository {
 
     @SuppressLint("CheckResult")
-    override fun getPopularTShows(page: Int): Flowable<TvShow> {
+    override fun getPopularTShows(page: Int): Flowable<List<TvShow>> {
         showsRemoteDataSource.getResult(page)
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())

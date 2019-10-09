@@ -11,7 +11,8 @@ class TvShowMapper : Function<TvShowEntity, TvShow> {
             t.tvShowId.toInt(),
             t.name,
             t.voteAvarage,
-            t.posterPath
+            t.posterPath,
+            t.popularity
         )
     }
 
