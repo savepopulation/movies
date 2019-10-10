@@ -6,9 +6,8 @@ import com.raqun.movies.shows.domain.PagedTvShows
 import com.raqun.movies.shows.domain.TvShow
 import com.raqun.movies.shows.domain.TvShowDetail
 import com.raqun.movies.shows.domain.TvShowsRepository
-import io.reactivex.Flowable
-import io.reactivex.rxkotlin.subscribeBy
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.Observable
+import io.reactivex.Single
 import javax.inject.Inject
 
 class TvShowsRepositoryImpl @Inject constructor(
@@ -18,21 +17,21 @@ class TvShowsRepositoryImpl @Inject constructor(
 ) : TvShowsRepository {
 
     @SuppressLint("CheckResult")
-    override fun getPopularTShows(page: Int): Flowable<List<TvShow>> {
-        showsRemoteDataSource.getResult(page)
-            .subscribeOn(Schedulers.io())
-            .observeOn(Schedulers.io())
-            .subscribeBy(onSuccess = {
-                it.results.forEach {
-                    showsLocalDataSource.put(it.id.toString(), it)
+    override fun getPopularTShows(page: Int): Single<List<TvShow>> {
+        val localShows: Observable<List<TvShow>> =
+            Observable.create<List<TvShow>> { showsLocalDataSource.get(page) }
+        val remoteShows: Observable<List<TvShow>> =
+            showsRemoteDataSource.getResult(page).toObservable()
+                .map { it.results }
+                .doOnNext {
+                    showsLocalDataSource.putAll(it)
                 }
-            }, onError = {
-                // ignored
-            })
-        return showsLocalDataSource.get(page)
+        return Observable.concat(remoteShows, localShows)
+            .firstOrError()
     }
 
-    override fun getShowDetail(id: Int): Flowable<TvShowDetail> =
-        showDetailsRemoteDataSource.getResult(id).toFlowable()
+    override fun getShowDetail(id: Int): Single<TvShowDetail> = Single.create {
+        showDetailsRemoteDataSource.getResult(id)
+    }
 
 }

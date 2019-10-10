@@ -1,6 +1,5 @@
 package com.raqun.movies.core.data.source
 
-import io.reactivex.Flowable
 import io.reactivex.Single
 
 interface DataSource {
@@ -12,11 +11,13 @@ interface DataSource {
     interface Local<K, V> : DataSource {
         fun get(key: K): V?
 
-        fun get(page: Int): Flowable<V>
+        fun get(page: Int): List<V>
 
-        fun getAll(): Flowable<V>
+        fun getAll(): List<V>
 
         fun put(key: K?, data: V): Boolean
+
+        fun putAll(data: List<V>)
 
         fun remove(value: V): Boolean
 
