@@ -10,7 +10,6 @@ import com.raqun.movies.core.model.DataHolder
 import com.raqun.movies.core.presentation.recyclerview.DisplayItem
 import com.raqun.movies.core.presentation.viewmodel.ReactiveViewModel
 import com.raqun.movies.shows.domain.GetPopularTvShowsInteractor
-import com.raqun.movies.shows.domain.PagedTvShows
 import com.raqun.movies.shows.domain.TvShow
 import io.reactivex.Observable
 import io.reactivex.functions.Function
@@ -19,7 +18,7 @@ import java.util.*
 import javax.inject.Inject
 
 class PopularTvShowsViewModel @Inject constructor(
-    private val getPopularTvShowsInteractor: Interactor.FlowableRetrieveInteractor<GetPopularTvShowsInteractor.Params, TvShow>,
+    private val getPopularTvShowsInteractor: Interactor.FlowableRetrieveInteractor<GetPopularTvShowsInteractor.Params, List<TvShow>>,
     private val itemMapper: Function<TvShow, DisplayItem>,
     private val errorFactory: ErrorFactory
 ) : ReactiveViewModel() {

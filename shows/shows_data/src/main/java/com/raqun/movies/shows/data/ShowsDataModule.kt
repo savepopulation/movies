@@ -36,25 +36,20 @@ class ShowsDataModule {
     fun provideTvShowMapper(): Function<TvShowEntity, TvShow> = TvShowMapper()
 
     @Provides
-    fun provideTvShowsLocalDataSource(
-        db: MoviesDb,
-        tvShowMapper: Function<TvShowEntity, TvShow>,
-        tvShowEntityMapper: Function<TvShow, TvShowEntity>
-    ): DataSource.Local<String, TvShow> =
-        TvShowsLocalDataSource(db, tvShowMapper, tvShowEntityMapper)
-
-
-    @Provides
     @Singleton
     fun provideShowsRepository(
         getPopularTvShowsRemoteDataSource: DataSource.RetrieveRemoteDataSource<Int, PagedTvShows>,
         getTvShowDetailRemoteDatASource: DataSource.RetrieveRemoteDataSource<Int, TvShowDetail>,
-        tvShowsLocalDataSource: DataSource.Local<String, TvShow>
+        db: MoviesDb,
+        tvShowMapper: Function<TvShowEntity, TvShow>,
+        tvShowEntityMapper: Function<TvShow, TvShowEntity>
     ): TvShowsRepository =
         TvShowsRepositoryImpl(
             getPopularTvShowsRemoteDataSource,
             getTvShowDetailRemoteDatASource,
-            tvShowsLocalDataSource
+            db,
+            tvShowMapper,
+            tvShowEntityMapper
         )
 
 }
