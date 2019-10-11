@@ -9,18 +9,13 @@ interface DataSource {
         fun getResult(request: Req): Single<Res>
     }
 
-    interface Local<K, V> : DataSource {
-        fun get(key: K): V?
+    interface FlowableLocal<K, V> : DataSource {
 
-        fun get(page: Int): Flowable<V>
-
-        fun getAll(): Flowable<V>
+        fun get(key: K?): Flowable<V>
 
         fun put(key: K?, data: V): Boolean
 
         fun remove(value: V): Boolean
-
-        fun removeByKey(key: K): Boolean
 
         fun clear()
     }
