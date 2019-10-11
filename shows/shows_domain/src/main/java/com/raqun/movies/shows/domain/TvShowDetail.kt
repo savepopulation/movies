@@ -8,5 +8,5 @@ data class TvShowDetail(
     @SerializedName("vote_average") val votesAverage: Number?,
     @SerializedName("poster_path") val posterPath: String?,
     @SerializedName("overview") val overview: String,
-    @SerializedName("vote_count") val VoteCount: Int?
+    @SerializedName("vote_count") val voteCount: Int?
 )

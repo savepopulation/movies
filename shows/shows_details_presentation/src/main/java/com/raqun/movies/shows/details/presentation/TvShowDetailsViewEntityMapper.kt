@@ -12,7 +12,7 @@ class TvShowDetailsViewEntityMapper : Function<TvShowDetail, TvShowDetailsViewEn
             t.votesAverage,
             t.posterPath,
             t.overview,
-            t.VoteCount
+            t.voteCount
         )
     }
 

@@ -14,7 +14,8 @@ import javax.inject.Inject
 class TvShowsRepositoryImpl @Inject constructor(
     private val showsRemoteDataSource: DataSource.RetrieveRemoteDataSource<Int, PagedTvShows>,
     private val showDetailsRemoteDataSource: DataSource.RetrieveRemoteDataSource<Int, TvShowDetail>,
-    private val showsLocalDataSource: DataSource.FlowableLocal<Int, List<TvShow>>
+    private val showsLocalDataSource: DataSource.FlowableLocal<Int, List<TvShow>>,
+    private val showDetailsLocalDataSource: DataSource.FlowableLocal<Int, TvShowDetail>
 ) : TvShowsRepository {
 
     @SuppressLint("CheckResult")

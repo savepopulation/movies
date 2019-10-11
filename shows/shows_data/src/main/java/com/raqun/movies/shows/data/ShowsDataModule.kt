@@ -1,6 +1,7 @@
 package com.raqun.movies.shows.data
 
 import com.raqun.movies.core.data.db.MoviesDb
+import com.raqun.movies.core.data.db.entity.TvShowDetailEntity
 import com.raqun.movies.core.data.db.entity.TvShowEntity
 import com.raqun.movies.core.data.source.DataSource
 import com.raqun.movies.shows.domain.PagedTvShows
@@ -43,16 +44,33 @@ class ShowsDataModule {
     fun provideTvShowMapper(): Function<TvShowEntity, TvShow> = TvShowMapper()
 
     @Provides
+    fun provideTvShowDetailEntityMapper(): Function<TvShowDetail, TvShowDetailEntity> =
+        TvShowDetailEntityMapper()
+
+    @Provides
+    fun provideTvShowDetailMapper(): Function<TvShowDetailEntity, TvShowDetail> =
+        TvShowDetailMapper()
+
+    @Provides
+    fun provideTvShowDetailsLocalDataSource(
+        db: MoviesDb,
+        tvShowDetailMapper: Function<TvShowDetailEntity, TvShowDetail>,
+        tvShowEntityMapper: Function<TvShowDetail, TvShowDetailEntity>
+    ): DataSource.FlowableLocal<Int, TvShowDetail> =
+        TvShowDetailsLocalDataSource(db, tvShowDetailMapper, tvShowEntityMapper)
+
+    @Provides
     @Singleton
     fun provideShowsRepository(
         getPopularTvShowsRemoteDataSource: DataSource.RetrieveRemoteDataSource<Int, PagedTvShows>,
         getTvShowDetailRemoteDatASource: DataSource.RetrieveRemoteDataSource<Int, TvShowDetail>,
-        tvShowsLocalDataSource: DataSource.FlowableLocal<Int, List<TvShow>>
+        tvShowsLocalDataSource: DataSource.FlowableLocal<Int, List<TvShow>>,
+        tvShowDetailsLocalDataSource: DataSource.FlowableLocal<Int, TvShowDetail>
     ): TvShowsRepository =
         TvShowsRepositoryImpl(
             getPopularTvShowsRemoteDataSource,
             getTvShowDetailRemoteDatASource,
-            tvShowsLocalDataSource
+            tvShowsLocalDataSource,
+            tvShowDetailsLocalDataSource
         )
-
 }

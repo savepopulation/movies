@@ -12,5 +12,5 @@ class TvShowDetailEntity constructor(
     @ColumnInfo(name = Db.TABLES.TVSHOW_DETAILS.COLUMNS.POSTER_PATH) val posterPath: String,
     @ColumnInfo(name = Db.TABLES.TVSHOW_DETAILS.COLUMNS.VOTE_AVARAGE) val voteAvarage: Double,
     @ColumnInfo(name = Db.TABLES.TVSHOW_DETAILS.COLUMNS.OVERVIEW) val overview: String,
-    @ColumnInfo(name = Db.TABLES.TVSHOW_DETAILS.COLUMNS.VOTE_COOUNT) val vodeCount: Int
+    @ColumnInfo(name = Db.TABLES.TVSHOW_DETAILS.COLUMNS.VOTE_COOUNT) val voteCount: Int
 ) : DbEntity
