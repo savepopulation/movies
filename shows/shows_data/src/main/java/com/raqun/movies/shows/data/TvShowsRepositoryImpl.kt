@@ -31,7 +31,18 @@ class TvShowsRepositoryImpl @Inject constructor(
         return showsLocalDataSource.get(null)
     }
 
-    override fun getShowDetail(id: Int): Flowable<TvShowDetail> =
-        showDetailsRemoteDataSource.getResult(id).toFlowable()
+    @SuppressLint("CheckResult")
+    override fun getShowDetail(id: Int): Flowable<TvShowDetail> {
+        showDetailsRemoteDataSource.getResult(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io())
+            .subscribeBy(onSuccess = {
+                showDetailsLocalDataSource.put(it.id, it)
+            }, onError = {
+                // ignored
+            })
+
+        return showDetailsLocalDataSource.get(id)
+    }
 
 }
