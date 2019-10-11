@@ -10,7 +10,7 @@ import io.reactivex.Flowable
 @Dao
 interface TvShowsDao {
 
-    @Query("SELECT * FROM tv_shows")
+    @Query("SELECT * FROM tv_shows ORDER BY popularity")
     fun getTvShows(): Flowable<List<TvShowEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

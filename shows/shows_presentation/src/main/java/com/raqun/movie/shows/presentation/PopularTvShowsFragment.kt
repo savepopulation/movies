@@ -72,9 +72,7 @@ class PopularTvShowsFragment : BaseViewModelFragment<PopularTvShowsViewModel>() 
             }
         })
 
-        if (savedInstanceState == null) {
-            viewModel.getPopularTvShowsByPagination()
-        }
+        viewModel.getPopularTvShowsByPagination()
     }
 
     companion object {
