@@ -1,5 +1,6 @@
 package com.raqun.movie.shows.presentation
 
+import com.raqun.movies.core.presentation.Constants.Companion.IMAGE_BASE_URL
 import com.raqun.movies.core.presentation.recyclerview.DisplayItem
 import com.raqun.movies.shows.domain.TvShow
 import io.reactivex.functions.Function
@@ -13,9 +14,5 @@ class PopularTvShowsViewEntityMapper : Function<TvShow, DisplayItem> {
             t.votesAverage,
             IMAGE_BASE_URL + t.posterPath
         )
-    }
-
-    companion object {
-        const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"
     }
 }

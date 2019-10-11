@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.raqun.movies.core.model.DataHolder
 import com.raqun.movies.core.navigation.features.TvShowDetails
+import com.raqun.movies.core.presentation.Constants.Companion.IMAGE_BASE_URL
 import com.raqun.movies.core.presentation.base.BaseViewModelFragment
+import com.raqun.movies.core.presentation.extensions.loadImage
 import kotlinx.android.synthetic.main.fragment_show_details.*
 
 class TvShowDetailsFragment : BaseViewModelFragment<TvShowDetailsViewModel>() {
@@ -27,6 +29,9 @@ class TvShowDetailsFragment : BaseViewModelFragment<TvShowDetailsViewModel>() {
                 is DataHolder.Success -> {
                     textViewTitle.text = it.data.name
                     textViewOverView.text = it.data.overview
+                    if (!it.data.posterPath.isNullOrEmpty()) {
+                        imageViewPoster.loadImage(IMAGE_BASE_URL + it.data.posterPath!!)
+                    }
                 }
 
                 is DataHolder.Fail -> {
