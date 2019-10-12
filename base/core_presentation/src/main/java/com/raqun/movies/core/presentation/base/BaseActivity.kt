@@ -7,15 +7,10 @@ import android.view.MenuItem
 import androidx.annotation.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
 import com.raqun.movies.core.presentation.Constants
 import com.raqun.movies.core.presentation.R
 import com.raqun.movies.core.presentation.navigation.UiNavigation
-import dagger.android.AndroidInjection
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
-import javax.inject.Inject
 
 abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
@@ -75,14 +70,34 @@ abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
         supportActionBar?.title = title
     }
 
-    fun setToolbar(toolbar: Toolbar) {
+    fun setToolbar(toolbar: Toolbar?) {
         setSupportActionBar(toolbar)
+    }
+
+    fun setNavigation(uiNavigation: UiNavigation) {
+        initNavigation(uiNavigation)
     }
 
     fun initNavigation(uiNavigation: UiNavigation) {
         when (uiNavigation) {
-            UiNavigation.BACK -> supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            UiNavigation.ROOT -> supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            UiNavigation.BACK -> {
+                supportActionBar?.apply {
+                    setDisplayShowHomeEnabled(true)
+                    setHomeButtonEnabled(true)
+                    setDisplayHomeAsUpEnabled(true)
+                }
+
+            }
+            UiNavigation.ROOT -> {
+                supportActionBar?.apply {
+                    setDisplayShowHomeEnabled(false)
+                    setHomeButtonEnabled(false)
+                    setDisplayHomeAsUpEnabled(false)
+                }
+            }
+            UiNavigation.NONE -> {
+                // no-op
+            }
         }
     }
 }

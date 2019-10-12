@@ -7,6 +7,7 @@ import com.raqun.movies.core.navigation.features.TvShowDetails
 import com.raqun.movies.core.presentation.Constants.Companion.IMAGE_BASE_URL
 import com.raqun.movies.core.presentation.base.BaseViewModelFragment
 import com.raqun.movies.core.presentation.extensions.loadImage
+import com.raqun.movies.core.presentation.navigation.UiNavigation
 import kotlinx.android.synthetic.main.fragment_show_details.*
 
 class TvShowDetailsFragment : BaseViewModelFragment<TvShowDetailsViewModel>() {
@@ -16,6 +17,8 @@ class TvShowDetailsFragment : BaseViewModelFragment<TvShowDetailsViewModel>() {
     override fun getModelClass() = TvShowDetailsViewModel::class.java
 
     override fun getLayoutRes() = R.layout.fragment_show_details
+
+    override val uiNavigation = UiNavigation.BACK
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +30,7 @@ class TvShowDetailsFragment : BaseViewModelFragment<TvShowDetailsViewModel>() {
         viewModel.tvShowDetails.observe(this, Observer {
             when (it) {
                 is DataHolder.Success -> {
-                    textViewTitle.text = it.data.name
+                    toolbar.title = it.data.name
                     textViewOverView.text = it.data.overview
                     if (!it.data.posterPath.isNullOrEmpty()) {
                         imageViewPoster.loadImage(IMAGE_BASE_URL + it.data.posterPath!!)

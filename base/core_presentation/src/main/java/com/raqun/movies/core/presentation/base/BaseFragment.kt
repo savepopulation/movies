@@ -4,13 +4,16 @@ import android.content.Context
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.annotation.MenuRes
 import androidx.annotation.StringRes
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.raqun.movies.core.error.Error
 import com.raqun.movies.core.presentation.Constants
 import com.raqun.movies.core.presentation.R
+import com.raqun.movies.core.presentation.navigation.UiNavigation
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
 
@@ -22,8 +25,13 @@ abstract class BaseFragment : Fragment(), BaseView {
     @MenuRes
     open val menuRes = Constants.NO_RES
 
+    @IdRes
+    open val toolbarRes = Constants.NO_RES
+
     @StringRes
     open val titleRes = Constants.NO_RES
+
+    open val uiNavigation = UiNavigation.NONE
 
     override fun onAttach(context: Context?) {
         if (activity is HasSupportFragmentInjector) {
@@ -51,6 +59,13 @@ abstract class BaseFragment : Fragment(), BaseView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (toolbarRes != Constants.NO_RES) {
+            val toolbar: Toolbar = view.findViewById(toolbarRes)
+            (activity as? BaseActivity)?.setToolbar(toolbar)
+        }
+        if (uiNavigation != UiNavigation.NONE) {
+            (activity as? BaseActivity)?.setNavigation(uiNavigation)
+        }
         initView()
     }
 

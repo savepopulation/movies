@@ -52,14 +52,6 @@
                 android:padding="16dp">
 
             <TextView
-                    android:id="@+id/textViewTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#ffffff"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
-            <TextView
                     android:id="@+id/textViewOverView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
