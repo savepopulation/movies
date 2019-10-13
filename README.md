@@ -39,12 +39,14 @@ other data related classes such as repository implementaions, remote local data 
 - RxJava
 - Dagger2
 - Retrofit
+- Room
 - Architecture Components
 - Lifecycle Aware Components
 - Modularization
 - Unit Testing
 - Mockito
 - Kotlin DSL
+- SSOT with RxJava and Room
 ```
 
 ## Screenshots:
