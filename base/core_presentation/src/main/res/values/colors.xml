@@ -7,8 +7,12 @@
     <color name="primaryTextColor">#212121</color>
     <color name="secondaryTextColor">#757575</color>
     <color name="dividerColor">#BDBDBD</color>
-    <color name="defaultBackgroundColor">#0e0e0e</color>
+    <color name="defaultBackgroundColor">#303030</color>
     <color name="toolbarBackgroundColor">#0f0f0f</color>
     <color name="lightBackgroundColor">#262626</color>
     <color name="darkBackgroundColor">#0e0e0e</color>
+    <color name="sectionBackGround">#3D3B3C</color>
+    <color name="sectionPrimaryText">#FFFFFF</color>
+    <color name="sectionTitle">#e5e5e5</color>
+    <color name="sectionSecondaryText">#757575</color>
 </resources>
