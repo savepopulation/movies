@@ -1,4 +1,4 @@
-package com.raqun.movies.core.presentation
+package com.raqun.movies.core.presentation.base
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -2,7 +2,7 @@ package com.raqun.movies.shows.details.presentation
 
 import android.os.Bundle
 import com.raqun.movies.core.navigation.features.TvShowDetails
-import com.raqun.movies.core.presentation.BaseInjectionActivity
+import com.raqun.movies.core.presentation.base.BaseInjectionActivity
 import com.raqun.movies.core.presentation.extensions.transact
 
 class TvShowDetailsActivity : BaseInjectionActivity() {
